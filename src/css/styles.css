@@ -1,3 +1,11 @@
 /* Common styles */
 @import url('./root.css');
 
+/* section styles */
+@import url('./header.css');
+@import url('./sct-hero.css');
+@import url('./sct-exercises.css');
+@import url('./sct-qfd.css');
+@import url('./footer.css');
+@import url('./mobile-menu.css');
+@import url('./sct-favorites.css');
