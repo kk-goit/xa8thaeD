@@ -17,7 +17,7 @@
     --color-stars-empty: rbga(244,244,244,20);
 
     --color-exmenu-add: rgba(36,36,36,50);
-    --color-exmenu-inact: rgba(36,36,36,60);
+    --color-exmenu-inact: rgba(36,36,36,0.60);
 
     --color-quote-text: rgba(244,244,244,60);
     --color-quote-ifill: rgba(244.244,244,20);
