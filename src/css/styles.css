@@ -1,5 +1,6 @@
 /* Common styles */
 @import url('./root.css');
+@import url('./container.css');
 
 /* section styles */
 @import url('./socials.css');
