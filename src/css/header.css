@@ -75,6 +75,16 @@
     fill: var(--color-main-dark);
   }
 
+  .header-socials.socials .socials-item:hover,
+  .header-socials.socials .socials-item:focus {
+    background-color: rgba(36, 36, 36, 0.8);
+  }
+
+  .header-socials.socials .socials-item:hover .socials-icon,
+  .header-socials.socials .socials-item:focus .socials-icon {
+    fill: var(--color-main-light);
+  }
+
   @media only screen and (min-width: 1440px) {
     .header {
       padding: 28px 32px;

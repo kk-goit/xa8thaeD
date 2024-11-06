@@ -73,3 +73,13 @@
 .mobile-menu-socials .socials-icon {
   fill: var(--color-main-light);
 }
+
+.mobile-menu-socials .socials-item:hover,
+.mobile-menu-socials .socials-item:focus {
+  background-color: var(--color-main-light);
+}
+
+.mobile-menu-socials .socials-item:hover .socials-icon,
+.mobile-menu-socials .socials-item:focus .socials-icon {
+  fill: var(--color-main-dark);
+}
