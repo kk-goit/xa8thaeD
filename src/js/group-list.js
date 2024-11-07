@@ -6,7 +6,7 @@ container.addEventListener('click', (event) => {
   const element = event.target.closest('.group-list__item');
   if (element) {
     console.log(element.dataset.name)
-    // TODO you can call to open modal here
+    // TODO you can call to open all exercises here
   }
 });
 
