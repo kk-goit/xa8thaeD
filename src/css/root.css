@@ -81,8 +81,8 @@ html {
 body {
     font-family: 'DM Sans', serif;
     font-weight: 500;
-    color: var(--clr-black);
-    background-color: var(--clr-white);
+    color: var(--clr-main-dark);
+    background-color: var(--clr-main-bg);
     min-width: 320px;
 
     /*  For better font rendering */
@@ -106,7 +106,6 @@ p {
     font-weight: 400;
     font-size: 14px;
     line-height: 171%;
-    color: var(--clr-black-50);
 }
 
 img {

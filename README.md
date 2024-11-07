@@ -41,3 +41,6 @@
     ### Отримати список вправ за масивом id цих вправ без пагінації
    - await yourEnergy.getExercisesByIdList(array)
         де array: string[] - масив id вправ.
+
+    ### Отримати цитату
+   - await yourEnergy.getQuote()

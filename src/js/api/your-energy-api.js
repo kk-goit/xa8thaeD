@@ -149,6 +149,16 @@ class YourEnergy {
         return results.filter(result => result.status === 'fulfilled')
             .map(result => result.value);
     }
+
+
+    async getQuote() {
+
+        try {
+            return await this.api.get('/quote');
+        } catch (error) {
+            return this.handleDefaultError(error);
+        }
+    }
 }
 
 
