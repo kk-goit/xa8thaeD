@@ -1,12 +1,14 @@
 import api from './api/your-energy-api'
 
 const container = document.querySelector('.group-list');
+const sectionTitle = document.querySelector(".section-title");
 
 container.addEventListener('click', (event) => {
   const element = event.target.closest('.group-list__item');
   if (element) {
     console.log(element.dataset.name)
     // TODO you can call to open all exercises here
+    sectionTitle.innerHTML = `Exercises / <span class='exercises-category'>${element.dataset.name}</span>`
   }
 });
 

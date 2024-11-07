@@ -1,9 +1,23 @@
+.section-top {
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+}
+
 .section-title {
     font-size: 28px;
     line-height: 1.357;
     font-weight: 400;
     color: var(--color-main-dark);
     letter-spacing: 0.02em;
+}
+
+.exercises-category {
+    color: var(--color-exmenu-add);
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-transform: capitalize;
 }
 
 .exercises-menu-list {
@@ -56,5 +70,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 32px;
     }
 }
