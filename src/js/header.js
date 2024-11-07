@@ -1,12 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const navItems = document.querySelectorAll('.nav-item');
-  const currentPath = window.location.pathname;
-
-  navItems.forEach(item => {
-    const navLink = item.querySelector('.nav-link');
-    item.classList.remove('active');
-    if (navLink.getAttribute('href').substring(1) === currentPath) {
-      item.classList.add('active');
-    }
-  });
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-item .nav-link').forEach(link => {
+        const item = link.closest('.nav-item');
+        item.classList.toggle(
+            'active',
+            currentPath.endsWith(link.getAttribute('href').substring(1))
+        );
+    });
 });
