@@ -1,7 +1,9 @@
 /* Common styles */
 @import url('./root.css');
+@import url('./container.css');
 
 /* section styles */
+@import url('./socials.css');
 @import url('./header.css');
 @import url('./sct-hero.css');
 @import url('./home-block-2.css');
