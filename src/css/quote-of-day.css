@@ -46,3 +46,19 @@
     color: var(--color-main-bg);
     text-align: left;
 }
+
+@media (min-width: 768px) and (max-width: 1167px) {
+    .quote-of-day {
+        padding: 40px;
+    }
+
+    .quote-title {
+        font-size: 24px;
+        line-height: 1.333;
+    }
+
+    .quote-author {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
