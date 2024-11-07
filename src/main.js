@@ -1,6 +1,7 @@
 import './js/menu.js';
 import './js/header.js';
 import './js/quote-of-day.js';
+import './js/group-list.js';
 import { execisesMenuButtonHandler } from './js/exercises-menu';
 
 const buttons = Array.from(document.querySelectorAll('.exercises-menu-button'));
