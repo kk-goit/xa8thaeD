@@ -2,12 +2,19 @@ footer.container {
     background-color: var(--color-main-dark);
     color: var(--color-popup-main);
     padding: 40px 20px 10px 20px;
-    max-width: 100%;
+    margin-top: 80px;
 }
 
 @media only screen and (min-width: 768px) {
     footer.container {
         padding: 64px 32px 16px 32px;
+        margin-top: 100px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    footer.container  {
+        margin-top: 132px;
     }
 }
 
@@ -41,11 +48,6 @@ footer.container {
 @media only screen and (min-width: 1440px) {
     .footer-content {
         margin-bottom: 70px;
-    }
-}
-
-@media only screen and (min-width: 1440px) {
-    .footer-content {
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
