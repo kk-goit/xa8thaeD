@@ -1,0 +1,20 @@
+.socials {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials-item {
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials-icon {
+  width: 28px;
+  height: 28px;
+  opacity: 0.8;
+}
