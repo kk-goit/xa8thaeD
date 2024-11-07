@@ -1,4 +1,5 @@
 import axios from 'axios';
+import yourEnergy from './api/your-energy-api';
 
 const today = new Date().toISOString().slice(0, 10);
 const quote = document.querySelector(".blockquote-text");
@@ -10,7 +11,7 @@ if(quoteInStorage && quoteInStorage.date === today) {
     quote.innerHTML = quoteInStorage.quote;
     author.innerHTML = quoteInStorage.author; 
 } else {
-    axios.get("https://your-energy.b.goit.study/api/quote")
+    yourEnergy.getQuote()
         .then(({ data }) => {
             localStorage.setItem('quoteOfDay', JSON.stringify({
                 quote: data.quote,
