@@ -1,4 +1,3 @@
-import axios from 'axios';
 import yourEnergy from './api/your-energy-api';
 
 const today = new Date().toISOString().slice(0, 10);
@@ -12,14 +11,17 @@ if(quoteInStorage && quoteInStorage.date === today) {
     author.innerHTML = quoteInStorage.author; 
 } else {
     yourEnergy.getQuote()
-        .then(({ data }) => {
-            localStorage.setItem('quoteOfDay', JSON.stringify({
-                quote: data.quote,
-                author: data.author,
-                date: today
-            }))
-            quote.innerHTML = data.quote;
-            author.innerHTML = data.author;
+        .then((response) => {
+            if(typeof response !== "string")  {
+                localStorage.setItem('quoteOfDay', JSON.stringify({
+                    quote: response.quote,
+                    author: response.author,
+                    date: today
+                }))
+                quote.innerHTML = response.quote;
+                author.innerHTML = response.author;
+            } else {
+                console.log(response);
+            }
         })
-        .catch(error => console.log(error));
 }
