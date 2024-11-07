@@ -16,4 +16,4 @@ import{a as m}from"./vendor-BAvsyV0G.js";(function(){const e=document.createElem
       </div>
     </div>
   `,S=t=>t.map(q).join(""),w=t=>{if(!c)return;const e=S(t);c.innerHTML=e},T=async t=>await y.getExercisesByFilter(t),p=async({filter:t="Muscles",page:e=1,limit:r=12}={})=>{const n=await T({filter:t,page:e,limit:r});w(n.results)};c&&p();const g=Array.from(document.querySelectorAll(".exercises-menu-button")),M=t=>{const e=document.querySelector(".section-title");e.innerHTML="Exercises",g.forEach(r=>{r.classList.remove("active")}),t.classList.add("active"),p({filter:t.textContent})};g.forEach(t=>t.addEventListener("click",()=>M(t)));
-//# sourceMappingURL=main-DZyoJxww.js.map
+//# sourceMappingURL=main-BiMv_f5Q.js.map
