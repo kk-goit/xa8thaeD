@@ -47,9 +47,10 @@
     text-align: left;
 }
 
-@media (min-width: 768px) and (max-width: 1167px) {
+@media (min-width: 768px) and (max-width: 1439px) {
     .quote-of-day {
         padding: 40px;
+        width: 400px;
     }
 
     .quote-title {

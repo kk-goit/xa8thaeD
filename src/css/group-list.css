@@ -59,8 +59,12 @@
 }
 
 @media (min-width: 1168px) {
-  .group-list__item {
-    height: 242px;
-    flex-basis: 290px;
-  }
+    .group-list {
+       width: 900px;
+    }
+
+    .group-list__item {
+        height: 242px;
+        flex-basis: 290px;
+    }
 }

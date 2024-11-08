@@ -3,3 +3,10 @@
   flex-direction: column;
   gap: 32px;
 }
+
+@media (min-width: 1440px) {
+  .exercises-group-list {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
