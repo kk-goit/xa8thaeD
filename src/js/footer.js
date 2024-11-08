@@ -18,6 +18,7 @@ form.addEventListener('submit', async (event) => {
                 'Subscription failed: ' + error,
             );
         }
+        form.elements.email.value = '';
     } else {
         toastManager.warning(
             'Warning',
