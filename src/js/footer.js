@@ -1,6 +1,5 @@
 import yourEnergy from './api/your-energy-api.js';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import toastManager from './api/toast-manager.js';
 
 const form = document.querySelector('.footer-form')
 
@@ -12,20 +11,17 @@ form.addEventListener('submit', async (event) => {
     if (emailPattern.test(email)) {
         try {
             const response = await yourEnergy.orderSubscription(email);
-            iziToast.success({
-                title: 'Success',
-                message: 'Subscription successful!',
-            });
+            toastManager.success('Success', 'Subscription successful!');
         } catch (error) {
-            iziToast.error({
-                title: 'Error',
-                message: 'Subscription failed: ' + error,
-            });
+            toastManager.error(
+                'Error',
+                'Subscription failed: ' + error,
+            );
         }
     } else {
-        iziToast.warning({
-            title: 'Warning',
-            message: 'Please enter a valid email address.',
-        });
+        toastManager.warning(
+            'Warning',
+            'Please enter a valid email address.',
+        );
     }
 });
