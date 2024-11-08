@@ -90,11 +90,13 @@ function removeExercise(exerciseId) {
     document.querySelector(`.exercise-card[data-id="${exerciseId}"]`).remove();
 }
 
-const favoriteExercises = JSON.parse(localStorage.getItem('favorites'));
+if (window.location.href.endsWith('/favorites.html')) {
+    const favoriteExercises = JSON.parse(localStorage.getItem('favorites'));
 
-if (favoriteExercises && Array.isArray(favoriteExercises)) {
-    renderUserListFavorites(favoriteExercises);
-} else {
-    favorites.innerHTML =
-        "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+    if (favoriteExercises && Array.isArray(favoriteExercises)) {
+        renderUserListFavorites(favoriteExercises);
+    } else {
+        favorites.innerHTML =
+            "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+    }
 }
