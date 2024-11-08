@@ -1,14 +1,33 @@
 import api from './api/your-energy-api'
 
-const container = document.querySelector('.group-list');
-const sectionTitle = document.querySelector(".section-title");
+// const container = document.querySelector('.group-list');
+// const sectionTitle = document.querySelector(".section-title");
 
-container.addEventListener('click', (event) => {
-  const element = event.target.closest('.group-list__item');
-  if (element) {
-    console.log(element.dataset.name)
-    // TODO you can call to open all exercises here
-    sectionTitle.innerHTML = `Exercises / <span class='exercises-category'>${element.dataset.name}</span>`
+// container.addEventListener('click', (event) => {
+//   const element = event.target.closest('.group-list__item');
+//   if (element) {
+//     console.log(element.dataset.name)
+//     // TODO you can call to open all exercises here
+//     sectionTitle.innerHTML = `Exercises / <span class='exercises-category'>${element.dataset.name}</span>`
+//   }
+// });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector('.group-list');
+  const sectionTitle = document.querySelector(".section-title");
+
+  if (container) {
+    container.addEventListener('click', (event) => {
+      const element = event.target.closest('.group-list__item');
+      if (element) {
+        console.log(element.dataset.name);
+        sectionTitle.innerHTML = `Exercises / <span class='exercises-category'>${element.dataset.name}</span>`;
+      }
+    });
+    
+    renderGroupListByFilter();
+  } else {
+    console.warn('Елемент .group-list не знайдено.');
   }
 });
 
@@ -38,6 +57,7 @@ const getGroupListHTMLString = (categoryList) => {
 }
 
 const renderGroupList = (categoryList) => {
+  const container = document.querySelector('.group-list'); // Added by Inna Boiko
   if (!container) return; // if no container, do nothing
   const categoryListHTMLString = getGroupListHTMLString(categoryList);
   container.innerHTML = categoryListHTMLString;
@@ -55,4 +75,4 @@ export const renderGroupListByFilter = async ({ filter = 'Muscles', page = 1, li
   // renderGroupListPagination(filter, page, data.totalPages)
 }
 
-if (container) renderGroupListByFilter();
+// if (container) renderGroupListByFilter();

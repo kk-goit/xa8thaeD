@@ -4,6 +4,7 @@
 
     /* colors */
     --color-main-bg: #f4f4f4;
+    --color-main-background: #D0CECE;
     --color-main-dark: #242424;
     --color-main-light: #f4f4f4;
     --color-dark-hover: rgba(36, 36, 36, 0.8);
@@ -82,7 +83,7 @@ body {
     font-family: 'DM Sans', serif;
     font-weight: 500;
     color: var(--clr-main-dark);
-    background-color: var(--clr-main-bg);
+    background-color: var(--color-main-background);
     min-width: 320px;
 
     /*  For better font rendering */
