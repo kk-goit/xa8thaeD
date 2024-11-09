@@ -26,7 +26,7 @@
 
 @media only screen and (min-width: 768px) {
     .exercise-card {
-        width: 344px;
+        flex-basis: calc(100% - 16) / 2;
     }
 }
 
@@ -36,7 +36,7 @@
     }
 
     .exercises-group-list {
-      flex-direction: row;
+        flex-direction: row;
     }
 }
 
@@ -56,11 +56,11 @@
 
 @media screen and (min-width: 768px) {
     .exercise-info__content {
-        flex-basis: 338px;
+        flex-basis: calc(100% - 16) / 2;
     }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
     .exercise-info__content {
         flex-basis: 342px;
     }
@@ -191,6 +191,7 @@
     height: 44px;
     margin-top: 40px;
     margin-bottom: 20px;
+    width: 335px;
 }
 
 @media screen and (min-width: 768px) {
@@ -226,8 +227,8 @@
     }
 
     .exercises-form {
-      margin-left: auto;
-      margin-right: 30px;
+        margin-left: auto;
+        margin-right: 30px;
     }
 }
 
@@ -277,13 +278,12 @@
 
 /* Pagination */
 
-
 .pagination {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .page-button {
@@ -307,13 +307,13 @@
 }
 
 .page-button.active {
-  color: var(--color-main-dark);
-  font-weight: bold;
-  border: 2px solid var(--color-main-dark);
+    color: var(--color-main-dark);
+    font-weight: bold;
+    border: 2px solid var(--color-main-dark);
 }
 
 .page-button:not(.active):hover {
-  color: var(--color-main-dark);
+    color: var(--color-main-dark);
 }
 
 @media screen and (min-width: 768px) {
@@ -366,14 +366,14 @@
 }
 
 .exercise-info__rating-stars svg {
-  padding: 2px;
+    padding: 2px;
 }
 
 .exercise-info__rating-text {
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--color-popup-main);
-  font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-popup-main);
+    font-weight: 400;
 }
 
 .give-rating-btn {
@@ -397,22 +397,21 @@
 }
 
 .page-button:disabled {
-  color: var(--color-exmenu-inact);
-  cursor: not-allowed;
+    color: var(--color-exmenu-inact);
+    cursor: not-allowed;
 }
 
 .ellipsis {
-  pointer-events: none;
-  color: var(--color-pager-light);
+    pointer-events: none;
+    color: var(--color-pager-light);
 }
 
 .icon-arrow-right-pag {
-  fill: var(--color-main-dark);
-  stroke: var(--color-main-dark);
-  ;
-  width: 100%;
-  height: 100%;
-  align-self: center;
+    fill: var(--color-main-dark);
+    stroke: var(--color-main-dark);
+    width: 100%;
+    height: 100%;
+    align-self: center;
 }
 
 /* #region Exercise info */
@@ -431,7 +430,7 @@
     }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
     .exercise-info__wrapper {
         width: 708px;
     }
@@ -457,7 +456,7 @@
     }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
     .exercise-info__content {
         flex-basis: 342px;
     }
@@ -575,14 +574,14 @@
 }
 
 .exercise-info__rating-stars svg {
-  padding: 2px;
+    padding: 2px;
 }
 
 .exercise-info__rating-text {
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--color-popup-main);
-  font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-popup-main);
+    font-weight: 400;
 }
 
 .give-rating-btn {
