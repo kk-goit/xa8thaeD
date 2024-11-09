@@ -1,5 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
 /* Глобальні стилі */
 .container {
@@ -20,7 +19,7 @@
     display: none;
 }
 
-/* Стилі для .hero-image img */
+
 .hero-image img {
     width: 100%;
     height: auto;
@@ -36,7 +35,7 @@
     object-fit: cover;
 }
 
-/* Медіазапит для пристроїв з високою щільністю пікселів і шириною до 767px */
+/* MOBILE Медіазапит для пристроїв з високою щільністю пікселів і шириною до 767px */
 @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
     screen and (min-resolution: 192dpi) and (max-width: 767px),
     screen and (min-resolution: 2dppx) and (max-width: 767px) {
@@ -125,7 +124,7 @@
         }
 }
 
-/* Медіазапит для екранів з мінімальною шириною 768px */
+/*  TABLET Медіазапит для екранів з мінімальною шириною 768px */
 @media screen and (min-width: 768px) {
     .container {
         max-width: 768px;
@@ -209,7 +208,7 @@
     }
 }
 
-/* Медіазапит для екранів з мінімальною шириною 1280px */
+/* DESKTOP Медіазапит для екранів з мінімальною шириною 1280px */
 @media screen and (min-width: 1280px) {
     .container {
         max-width: 1200px;
