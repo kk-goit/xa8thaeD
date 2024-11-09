@@ -48,6 +48,8 @@
     --color-mm-social-border: rgba(244, 244, 244, 0.1);
     --color-mm-social-fill: rgba(244, 244, 244, 1);
 
+    --color-fav-sports: rgba(24, 24, 24, 0.6);
+
     /* animation */
     --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
