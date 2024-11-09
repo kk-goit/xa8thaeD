@@ -80,7 +80,7 @@
         height: 38px;
         fill: #000;
         margin-right: 30px;
-        vertical-align: middle;
+       
     }
 
     .mobile-tags {
@@ -156,7 +156,7 @@
     }
 
     .hero-section {
-        padding: 32px;
+       
         max-width: 768px;
         margin: 0 auto;
     }
@@ -170,7 +170,7 @@
         height: 59px;
         fill: #000;
         margin-right: 0px;
-        vertical-align: middle;
+        
     }
 
     .mobile-tags {
@@ -240,7 +240,7 @@
     }
 
     .hero-section {
-        padding: 32px;
+        
         max-width: 1376px;
         margin: 0 auto;
     }
@@ -252,7 +252,7 @@
         top: 182px;
         left: 32px;
         margin-right: 8px;
-        vertical-align: middle;
+       
     }
 
     .tag {
