@@ -1,20 +1,103 @@
-let currentPage = 1;
-function setCurrentPage(page) {
-    currentPage = page;
+let currentFetchMethod = null;
+
+function resetCurrentPage() {
+    currentPageSearch = 1;
+    currentPageCategory = 1;
+    currentPageExercises = 1;
+}
+function resetCurrentPageFilter() {
+    currentPageCategory = 1;
+}
+function changeFetchMethod(newMethod) {
+    if (currentFetchMethod !== newMethod) {
+        resetCurrentPage();
+        currentFetchMethod = newMethod;
+    }
+}
+let currentPageSearch = 1;
+
+function setCurrentPageSearch(page) {
+    currentPageSearch = page;
 }
 
-function getCurrentPage() {
-    return currentPage;
+function getCurrentPageSearch() {
+    return currentPageSearch;
 }
 
-async function renderPaginationButtons(
+async function renderPaginationButtonsSearch(
     totalPages,
     fetchDataFunction,
     ...fetchDataParams
 ) {
-    // console.log(...fetchDataParams);
+    renderPagination(
+        totalPages,
+        fetchDataFunction,
+        setCurrentPageSearch,
+        getCurrentPageSearch,
+        ...fetchDataParams
+    );
+}
+
+// Пагінація для пошуку за категорією
+let currentPageCategory = 1;
+function setCurrentPageCategory(page) {
+    currentPageCategory = page;
+}
+
+function getCurrentPageCategory() {
+    return currentPageCategory;
+}
+
+async function renderPaginationButtonsCategory(
+    totalPages,
+    fetchDataFunction,
+    ...fetchDataParams
+) {
+    renderPagination(
+        totalPages,
+        fetchDataFunction,
+        setCurrentPageCategory,
+        getCurrentPageCategory,
+        ...fetchDataParams
+    );
+}
+
+// Пагінація для пошуку за іншим параметром (наприклад, за м'язами чи обладнанням)
+let currentPageExercises = 1;
+function setCurrentPageExercises(page) {
+    currentPageExercises = page;
+}
+
+function getCurrentPageExercises() {
+    return currentPageExercises;
+}
+
+async function renderPaginationButtonsExercises(
+    totalPages,
+    fetchDataFunction,
+    ...fetchDataParams
+) {
+    renderPagination(
+        totalPages,
+        fetchDataFunction,
+        setCurrentPageExercises,
+        getCurrentPageExercises,
+        ...fetchDataParams
+    );
+}
+
+// Загальна функція рендеру пагінації
+function renderPagination(
+    totalPages,
+    fetchDataFunction,
+    setCurrentPage,
+    getCurrentPage,
+    ...fetchDataParams
+) {
     const pagination = document.querySelector('.pagination');
     pagination.innerHTML = '';
+
+    const currentPage = getCurrentPage();
 
     const prevButton = createPrevButton();
     pagination.appendChild(prevButton);
@@ -59,14 +142,14 @@ async function renderPaginationButtons(
         }
         button.addEventListener('click', async () => {
             setCurrentPage(pageNumber);
-            // await fetchDataFunction(currentPage, ...fetchDataParams);
             await fetchDataFunction(...fetchDataParams);
-            renderPaginationButtons(
+            renderPagination(
                 totalPages,
                 fetchDataFunction,
+                setCurrentPage,
+                getCurrentPage,
                 ...fetchDataParams
             );
-            fetchDataParams = '';
         });
         pagination.appendChild(button);
     }
@@ -86,14 +169,14 @@ async function renderPaginationButtons(
         prevButton.addEventListener('click', async () => {
             if (currentPage > 1) {
                 setCurrentPage(currentPage - 1);
-                // await fetchDataFunction(currentPage, ...fetchDataParams); // Pass currentPage and additional params
                 await fetchDataFunction(...fetchDataParams);
-                renderPaginationButtons(
+                renderPagination(
                     totalPages,
                     fetchDataFunction,
+                    setCurrentPage,
+                    getCurrentPage,
                     ...fetchDataParams
                 );
-                fetchDataParams = '';
             }
         });
         return prevButton;
@@ -107,18 +190,27 @@ async function renderPaginationButtons(
         nextButton.addEventListener('click', async () => {
             if (currentPage < totalPages) {
                 setCurrentPage(currentPage + 1);
-                // await fetchDataFunction(currentPage, ...fetchDataParams);
                 await fetchDataFunction(...fetchDataParams);
-                renderPaginationButtons(
+                renderPagination(
                     totalPages,
                     fetchDataFunction,
+                    setCurrentPage,
+                    getCurrentPage,
                     ...fetchDataParams
                 );
-                fetchDataParams = '';
             }
         });
         return nextButton;
     }
 }
 
-export { renderPaginationButtons, getCurrentPage };
+export {
+    renderPaginationButtonsSearch,
+    renderPaginationButtonsCategory,
+    renderPaginationButtonsExercises,
+    getCurrentPageSearch,
+    getCurrentPageCategory,
+    getCurrentPageExercises,
+    changeFetchMethod,
+    resetCurrentPageFilter,
+};
