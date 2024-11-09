@@ -41,14 +41,14 @@ async function searchListOfExercises() {
 
 async function findListOfExercises(catName, catValue) {
     const page = getCurrentPage();
-    switch (catName) {
-        case 'Muscles':
+    switch (catName.toLowerCase()) {
+        case 'muscles':
             categoryName = 'muscles';
             break;
-        case 'Equipment':
+        case 'equipment':
             categoryName = 'equipment';
             break;
-        case 'Body parts':
+        case 'body parts':
             categoryName = 'bodypart';
             break;
     }
