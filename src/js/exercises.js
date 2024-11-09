@@ -1,9 +1,14 @@
 import {
-    renderPaginationButtons,
-    getCurrentPage,
+    renderPaginationButtonsSearch,
+    renderPaginationButtonsExercises,
+    getCurrentPageSearch,
+    getCurrentPageExercises,
+    changeFetchMethod,
 } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
 import showExersiceInfoModal from './exercise-info.js';
+import iconsSVG from '../img/icons.svg';
+
 import {
     replaceInnerHtmlWithLoader,
     removeLoaderFromElement,
@@ -28,7 +33,7 @@ function handlerSearchFormSubmit(e) {
     keyword = e.target.elements.search.value.trim();
     console.log(keyword);
     if (!keyword) {
-        ('Please, enter a search words');
+        alert('Please, enter a search words');
         return;
     }
     searchListOfExercises();
@@ -36,7 +41,7 @@ function handlerSearchFormSubmit(e) {
 }
 
 async function searchListOfExercises() {
-    const page = getCurrentPage();
+    const page = getCurrentPageSearch();
     replaceInnerHtmlWithLoader(exercises);
 
     const listOfExercises = await yourEnergy.getExercises({
@@ -45,20 +50,38 @@ async function searchListOfExercises() {
         [categoryName]: categoryValue,
         keyword,
     });
+    console.group(
+        page,
+        'searchListOfExercises',
+        categoryName,
+        categoryValue,
+        keyword,
+        listOfExercises,
+        listOfExercises.totalPages
+    );
     renderUserListExercises(listOfExercises.results);
+    changeFetchMethod('search');
+    renderPaginationButtonsSearch(
+        listOfExercises.totalPages,
+        searchListOfExercises,
+        categoryName,
+        categoryValue,
+        keyword
+    );
     removeLoaderFromElement(exercises);
 }
 
 async function findListOfExercises(catName, catValue) {
-    const page = getCurrentPage();
+    const page = getCurrentPageExercises();
     switch (catName) {
-        case 'Muscles':
+        case 'muscles':
             categoryName = 'muscles';
             break;
-        case 'Equipment':
+        case 'equipment':
             categoryName = 'equipment';
             break;
-        case 'Body parts':
+        // case 'body parts':
+        case 'bodypart':
             categoryName = 'bodypart';
             break;
     }
@@ -78,9 +101,17 @@ async function findListOfExercises(catName, catValue) {
         // }
 
         exercisesForm.classList.remove('visually-hidden');
-
+        console.group(
+            page,
+            'findListOfExercises',
+            categoryName,
+            categoryValue,
+            listOfExercises,
+            listOfExercises.totalPages
+        );
         renderUserListExercises(listOfExercises.results);
-        renderPaginationButtons(
+        changeFetchMethod('exercises');
+        renderPaginationButtonsExercises(
             listOfExercises.totalPages,
             findListOfExercises,
             categoryName,
@@ -107,21 +138,21 @@ function renderUserListExercises(listExercises) {
         <div class="rating-star">
             <span class='text-star'>${exercise.rating}</span>
            <svg class="star-icon" width="18" height="18">
-                    <use href="./img/icons.svg#icon-star-18"></use>
+                    <use href="${iconsSVG}#icon-star-18"></use>
                 </svg>
         </div>
         </div>
         <button class="start">
             Start
             <svg class="icon-arrow-right" width="13" height="13">
-                    <use href="./img/icons.svg#icon-arrow-right"></use>
+                    <use href="${iconsSVG}#icon-arrow-right"></use>
                 </svg>
         </button>
     </div>
     <div class="exercise-info">
     <div class="icon-wrapper">
     <svg class="arrow-running-icon" width="14" height="16">                     
-        <use href="./img/icons.svg#icon-running-stick-figure"></use>
+        <use href="${iconsSVG}#icon-running-stick-figure"></use>
     </svg>
 </div>
         <p class="exercise-name">${exercise.name
