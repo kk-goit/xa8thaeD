@@ -1,8 +1,9 @@
 import api from './api/your-energy-api';
 import { findListOfExercises } from './exercises.js';
 import {
-    renderPaginationButtons,
-    getCurrentPage,
+    changeFetchMethod,
+    renderPaginationButtonsCategory,
+    getCurrentPageCategory,
 } from './pagination-exercises.js';
 let activeButtonText = ''; // By Ruslan Isupov Add global variable
 
@@ -78,13 +79,34 @@ export const renderGroupListByFilter = async ({
     page = 1,
     limit = 12,
 } = {}) => {
+    page = getCurrentPageCategory(); // Added  by Ruslan Isupov
+    activeButtonText = filter.toLowerCase(); // Take filter and save in global variable "activeButtonText"
+    // console.log('renderGroupListByFilter before', filter);
+    // console.log('renderGroupListByFilter before', activeButtonText);
+    // if (activeButtonText !== filter.toLowerCase()) {
+    //     console.log('renderGroupListByFilter not equel');
+    //     page = 1;
+    //     activeButtonText = filter.toLowerCase();
+    // }
+    // activeButtonText = filter.toLowerCase();
+    // if (activeButtonText === 'body parts') {
+    //     activeButtonText = 'bodypart';
+    // }
+    // console.log('renderGroupListByFilter before', filter);
+    // console.log('renderGroupListByFilter before', activeButtonText);
     const data = await fetchDataByFilter({ filter, page, limit });
 
-    page = getCurrentPage(); // Added  by Ruslan Isupov
-    activeButtonText = filter.toLowerCase(); // Take filter and save in global variable "activeButtonText"
     renderGroupList(data.results);
     //  Pagination
-    renderPaginationButtons(
+    changeFetchMethod('category');
+    console.group(
+        page,
+        'renderGroupListByFilter',
+        activeButtonText,
+        filter,
+        data.totalPages
+    );
+    renderPaginationButtonsCategory(
         data.totalPages,
         renderGroupListByFilter,
         activeButtonText
