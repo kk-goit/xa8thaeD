@@ -5,6 +5,10 @@ import {
     renderPaginationButtonsCategory,
     getCurrentPageCategory,
 } from './pagination-exercises.js';
+import {
+    replaceInnerHtmlWithLoader,
+    removeLoaderFromElement,
+} from './loader.js';
 let activeButtonText = ''; // By Ruslan Isupov Add global variable
 
 // const container = document.querySelector('.group-list');
@@ -90,10 +94,11 @@ export const renderGroupListByFilter = async ({
     // }
     // activeButtonText = filter.toLowerCase();
     if (activeButtonText === 'body parts') {
-         activeButtonText = 'bodypart';
+        activeButtonText = 'bodypart';
     }
     // console.log('renderGroupListByFilter before', filter);
     // console.log('renderGroupListByFilter before', activeButtonText);
+    replaceInnerHtmlWithLoader(document.querySelector('.group-list'));
     const data = await fetchDataByFilter({ filter, page, limit });
 
     renderGroupList(data.results);

@@ -9,16 +9,23 @@ import yourEnergy from './api/your-energy-api.js';
 import showExersiceInfoModal from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
 
+import {
+    replaceInnerHtmlWithLoader,
+    removeLoaderFromElement,
+} from './loader.js';
 const exercisesForm = document.querySelector('.exercises-form');
 
 // const notFoundTextEl = document.querySelector('.not-found-text');
+const exercises = document.querySelector('.group-list');
 
 let limit = 10;
 let categoryName = 'muscles';
 let categoryValue = '';
 let keyword = '';
 
-exercisesForm.addEventListener('submit', handlerSearchFormSubmit);
+if (exercisesForm) {
+    exercisesForm.addEventListener('submit', handlerSearchFormSubmit);
+}
 
 function handlerSearchFormSubmit(e) {
     e.preventDefault();
@@ -35,6 +42,8 @@ function handlerSearchFormSubmit(e) {
 
 async function searchListOfExercises() {
     const page = getCurrentPageSearch();
+    replaceInnerHtmlWithLoader(exercises);
+
     const listOfExercises = await yourEnergy.getExercises({
         page,
         limit,
@@ -59,6 +68,7 @@ async function searchListOfExercises() {
         categoryValue,
         keyword
     );
+    removeLoaderFromElement(exercises);
 }
 
 async function findListOfExercises(catName, catValue) {
@@ -76,6 +86,7 @@ async function findListOfExercises(catName, catValue) {
             break;
     }
     categoryValue = catValue;
+    replaceInnerHtmlWithLoader(exercises);
     try {
         const listOfExercises = await yourEnergy.getExercises({
             page,
@@ -110,12 +121,11 @@ async function findListOfExercises(catName, catValue) {
         clearMarkup();
         console.log(err);
     } finally {
+        removeLoaderFromElement(exercises);
         console.log('Buy');
         // form.reset();
     }
 }
-
-const exercises = document.querySelector('.group-list');
 
 function renderUserListExercises(listExercises) {
     const markup = listExercises
@@ -167,12 +177,11 @@ function renderUserListExercises(listExercises) {
         card.addEventListener('click', handleExerciseStart);
     });
 }
-    
+
 function handleExerciseStart(e) {
     const exerciseId = e.target.closest('.exercise-card').dataset.id;
     showExersiceInfoModal(exerciseId);
 }
-
 
 function clearMarkup() {
     exercises.innerHTML = '';
