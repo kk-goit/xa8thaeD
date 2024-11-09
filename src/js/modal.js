@@ -1,3 +1,5 @@
+import iconsSVG from '../img/icons.svg';
+
 class Modal {
     constructor(content) {
         this.backdrop = document.createElement('div');
@@ -13,7 +15,7 @@ class Modal {
         this.closeButton = document.createElement('button');
         this.closeButton.innerHTML = ` 
         <svg width="12" height="12">
-            <use class="modal-close-icon" href="./img/icons.svg#icon-close-modal"></use>
+            <use class="modal-close-icon" href="${iconsSVG}#icon-close-modal"></use>
         </svg>
     `;
         this.closeButton.classList.add('close-modal-btn');
