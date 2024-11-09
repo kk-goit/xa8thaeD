@@ -2,10 +2,6 @@
     padding: 32px;
 }
 
-.quote-wrapper {
-    margin-top: 32px;
-}
-
 .favorites {
     display: flex;
     flex-direction: column;
