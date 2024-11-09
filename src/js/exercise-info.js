@@ -197,4 +197,4 @@ async function fetchExerciseInfoById(id) {
     return await api.getExerciseById(id);
 }
 
-export default showExersiceInfoModal;
+export { showExersiceInfoModal, removeFromFavorites };
