@@ -9,8 +9,15 @@ function showExersiceInfoModal(exerciseId) {
         const addToFavoriteBtn = exerciseModal.modal.querySelector('.add-to-favorite-btn');
         const giveRatingBtn = exerciseModal.modal.querySelector('.give-rating-btn');
 
-        addToFavoriteBtn.addEventListener('click', () => {
-            addToFavorites(exerciseId);
+        addToFavoriteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isFavorite(exerciseId)) {
+                removeFromFavorites(exerciseId);
+            } else {
+                addToFavorites(exerciseId);
+            }
+            // Update the button text and icon
+            addToFavoriteBtn.innerHTML = getAddedToFavoritesBtnHTML(exerciseId);
         });
         
         giveRatingBtn.addEventListener('click', () => {
@@ -25,9 +32,7 @@ function showExersiceInfoModal(exerciseId) {
 function buildExerciseInfoHTML(exerciseInfo) {
     return `
         <div class="exercise-info__wrapper">
-            <img class="exercise-info__img" src="${exerciseInfo.gifUrl}" alt="${
-        exerciseInfo.name
-    }">
+            <img class="exercise-info__img" src="${exerciseInfo.gifUrl}" alt="${exerciseInfo.name}" width="270" height="259">
             <div class="exercise-info__content">
                 <h3 class="exercise-info__title">${exerciseInfo.name}</h3>
                 <div class="exercise-info__rating">
@@ -36,19 +41,14 @@ function buildExerciseInfoHTML(exerciseInfo) {
                 <ul class="exercise-info__params">
                     ${buildExerciseInfoParamsHTML(exerciseInfo)}
                 </ul>
-                <p class="exercise-info__description">${
-                    exerciseInfo.description
-                }</p>
+                <p class="exercise-info__description">${exerciseInfo.description}</p>
             </div>
-                    <div class="exercise-info__actions">
-            <button class="exercise-info__button add-to-favorite-btn" data-id="${exerciseInfo._id}">
-                Add to favorites
-                <svg width="20" height="20">
-                    <use class="modal-close-icon" href="./img/icons.svg#icon-heart"></use>
-                </svg>
-            </button>
-            <button class="exercise-info__button give-rating-btn">Give a rating</button>
-        </div>
+            <div class="exercise-info__actions">
+                <button class="exercise-info__button add-to-favorite-btn" data-id="${exerciseInfo._id}">
+                    ${getAddedToFavoritesBtnHTML(exerciseInfo._id)}
+                </button>
+                <button class="exercise-info__button give-rating-btn">Give a rating</button>
+            </div>
         </div>
     `;
 }
@@ -87,7 +87,7 @@ function getRatingStarsHTML(rating) {
     const stars = [];
 
     // Format rating text to 1 decimal place
-    rating = 3.4;//rating.toFixed(1);
+    rating = rating.toFixed(1);
 
     const ratingInt = Math.floor(rating);
     const ratingDecimal = rating - ratingInt;
@@ -133,15 +133,63 @@ function getRatingStarsHTML(rating) {
 }
 
 function addToFavorites(exerciseId) {
+    // Get data from local storage
+    const favorites = localStorage.getItem('favorites');
+    if (!favorites) {
+        // Add exercise to favorites
+        localStorage.setItem('favorites', JSON.stringify([exerciseId]));
+    } else {
+        // Parse favorites
+        const favoritesArr = JSON.parse(favorites);
 
+        // Check if exercise is already in favorites
+        if (favoritesArr.includes(exerciseId)) {
+            return;
+        }
+
+        // Add exercise to favorites
+        favoritesArr.push(exerciseId);
+        localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+    }
+}
+
+function removeFromFavorites(exerciseId) {
+    // Get data from local storage
+    const favorites = localStorage.getItem('favorites');
+    if (!favorites) {
+        return;
+    }
+
+    // Parse favorites
+    const favoritesArr = JSON.parse(favorites);
+
+    // Remove exercise from favorites
+    const updatedFavorites = favoritesArr.filter(id => id !== exerciseId);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 }
 
 function isFavorite(exerciseId) {
     // Get data from local storage
     const favorites = localStorage.getItem('favorites');
+   
     if (!favorites) {
         return false;
     }
+
+    const favoritesArr = JSON.parse(favorites);
+
+    return favoritesArr.includes(exerciseId);
+}
+
+function getAddedToFavoritesBtnHTML(exerciseId) {
+    const isFav = isFavorite(exerciseId);
+
+    return `
+        ${isFav ? 'Remove from favorites' : 'Add to favorites'}
+        <svg width="20" height="20">
+            <use class="modal-close-icon" href="./img/icons.svg#${isFav ? 'icon-trash' : 'icon-heart'}"></use>
+        </svg>
+    `;
 }
 
 async function fetchExerciseInfoById(id) {
