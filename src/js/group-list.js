@@ -1,27 +1,19 @@
 import api from './api/your-energy-api';
 import { findListOfExercises } from './exercises.js';
-import {
-    changeFetchMethod,
-    renderPaginationButtonsCategory,
-    getCurrentPageCategory,
-} from './pagination-exercises.js';
+import Pagination from './pagination.js';
 import {
     replaceInnerHtmlWithLoader,
     removeLoaderFromElement,
 } from './loader.js';
+
 let activeButtonText = ''; // By Ruslan Isupov Add global variable
 
-// const container = document.querySelector('.group-list');
-// const sectionTitle = document.querySelector(".section-title");
-
-// container.addEventListener('click', (event) => {
-//   const element = event.target.closest('.group-list__item');
-//   if (element) {
-//     console.log(element.dataset.name)
-//     // TODO you can call to open all exercises here
-//     sectionTitle.innerHTML = `Exercises / <span class='exercises-category'>${element.dataset.name}</span>`
-//   }
-// });
+const categoryPagination = new Pagination();
+categoryPagination.setItemsPerPageConfig({
+    desktop: 12,
+    tablet: 12,
+    mobile: 9,
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.group-list');
@@ -37,7 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        renderGroupListByFilter();
+        renderGroupListByFilter({
+            filter: 'Muscles',
+            page: 1,
+            limit: categoryPagination.getItemsPerPage(),
+        });
     } else {
         console.warn('Елемент .group-list не знайдено.');
     }
@@ -81,29 +77,23 @@ const fetchDataByFilter = async params => {
 export const renderGroupListByFilter = async ({
     filter = 'Muscles',
     page = 1,
-    limit = 12,
+    limit,
 } = {}) => {
-    page = getCurrentPageCategory(); // Added  by Ruslan Isupov
+    page = categoryPagination.getCurrentPage(); // Added by Ruslan Isupov
     activeButtonText = filter.toLowerCase(); // Take filter and save in global variable "activeButtonText"
-    // console.log('renderGroupListByFilter before', filter);
-    // console.log('renderGroupListByFilter before', activeButtonText);
-    // if (activeButtonText !== filter.toLowerCase()) {
-    //     console.log('renderGroupListByFilter not equel');
-    //     page = 1;
-    //     activeButtonText = filter.toLowerCase();
-    // }
-    // activeButtonText = filter.toLowerCase();
+
     if (activeButtonText === 'body parts') {
         activeButtonText = 'bodypart';
     }
-    // console.log('renderGroupListByFilter before', filter);
-    // console.log('renderGroupListByFilter before', activeButtonText);
+
+    limit = limit || categoryPagination.getItemsPerPage();
+
     replaceInnerHtmlWithLoader(document.querySelector('.group-list'));
     const data = await fetchDataByFilter({ filter, page, limit });
 
     renderGroupList(data.results);
-    //  Pagination
-    changeFetchMethod('category');
+    // Pagination
+    categoryPagination.setCurrentPage(page);
     console.group(
         page,
         'renderGroupListByFilter',
@@ -111,11 +101,15 @@ export const renderGroupListByFilter = async ({
         filter,
         data.totalPages
     );
-    renderPaginationButtonsCategory(
+    categoryPagination.renderPagination(
         data.totalPages,
         renderGroupListByFilter,
         activeButtonText
     );
 };
+
+window.addEventListener('resize', () => {
+    categoryPagination.updateItemsPerPage();
+});
 
 // if (container) renderGroupListByFilter();

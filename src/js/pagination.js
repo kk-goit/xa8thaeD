@@ -26,9 +26,20 @@ class Pagination {
         this.updateItemsPerPage();
     }
 
+    getItemsPerPage() {
+        const width = window.innerWidth;
+        if (width >= 1440) {
+            return this.itemsPerPage;
+        } else if (width >= 768) {
+            return this.itemsPerPage;
+        } else {
+            return this.itemsPerPage;
+        }
+    }
+
     updateItemsPerPage() {
         const width = window.innerWidth;
-        if (width >= 1024) {
+        if (width >= 1440) {
             this.itemsPerPage = this.itemsPerPageConfig.desktop;
         } else if (width >= 768) {
             this.itemsPerPage = this.itemsPerPageConfig.tablet;

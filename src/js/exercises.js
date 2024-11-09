@@ -1,13 +1,8 @@
-import {
-    renderPaginationButtonsSearch,
-    renderPaginationButtonsExercises,
-    getCurrentPageSearch,
-    getCurrentPageExercises,
-    changeFetchMethod,
-} from './pagination-exercises.js';
+import { changeFetchMethod } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
 import showExersiceInfoModal from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
+import Pagination from './pagination.js';
 
 import {
     replaceInnerHtmlWithLoader,
@@ -17,8 +12,19 @@ const exercisesForm = document.querySelector('.exercises-form');
 
 // const notFoundTextEl = document.querySelector('.not-found-text');
 const exercises = document.querySelector('.group-list');
+const searchPagination = new Pagination();
+searchPagination.setItemsPerPageConfig({
+    desktop: 10,
+    tablet: 10,
+    mobile: 8,
+});
+const exercisesPagination = new Pagination();
+exercisesPagination.setItemsPerPageConfig({
+    desktop: 10,
+    tablet: 10,
+    mobile: 8,
+});
 
-let limit = 10;
 let categoryName = 'muscles';
 let categoryValue = '';
 let keyword = '';
@@ -41,8 +47,9 @@ function handlerSearchFormSubmit(e) {
 }
 
 async function searchListOfExercises() {
-    const page = getCurrentPageSearch();
+    const page = searchPagination.getCurrentPage();
     replaceInnerHtmlWithLoader(exercises);
+    const limit = exercisesPagination.getItemsPerPage();
 
     const listOfExercises = await yourEnergy.getExercises({
         page,
@@ -60,19 +67,20 @@ async function searchListOfExercises() {
         listOfExercises.totalPages
     );
     renderUserListExercises(listOfExercises.results);
-    changeFetchMethod('search');
-    renderPaginationButtonsSearch(
+
+    searchPagination.renderPagination(
         listOfExercises.totalPages,
         searchListOfExercises,
         categoryName,
         categoryValue,
         keyword
     );
+
     removeLoaderFromElement(exercises);
 }
 
 async function findListOfExercises(catName, catValue) {
-    const page = getCurrentPageExercises();
+    const page = exercisesPagination.getCurrentPage();
     switch (catName) {
         case 'muscles':
             categoryName = 'muscles';
@@ -88,6 +96,7 @@ async function findListOfExercises(catName, catValue) {
     categoryValue = catValue;
     replaceInnerHtmlWithLoader(exercises);
     try {
+        const limit = exercisesPagination.getItemsPerPage();
         const listOfExercises = await yourEnergy.getExercises({
             page,
             limit,
@@ -111,7 +120,7 @@ async function findListOfExercises(catName, catValue) {
         );
         renderUserListExercises(listOfExercises.results);
         changeFetchMethod('exercises');
-        renderPaginationButtonsExercises(
+        exercisesPagination.renderPagination(
             listOfExercises.totalPages,
             findListOfExercises,
             categoryName,
@@ -186,5 +195,10 @@ function handleExerciseStart(e) {
 function clearMarkup() {
     exercises.innerHTML = '';
 }
+
+window.addEventListener('resize', () => {
+    searchPagination.updateItemsPerPage();
+    exercisesPagination.updateItemsPerPage();
+});
 
 export { findListOfExercises };
