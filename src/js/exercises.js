@@ -3,6 +3,7 @@ import {
     getCurrentPage,
 } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
+import showExersiceInfoModal from './exercise-info.js';
 import {
     replaceInnerHtmlWithLoader,
     removeLoaderFromElement,
@@ -136,6 +137,17 @@ function renderUserListExercises(listExercises) {
         .join('');
 
     exercises.innerHTML = markup;
+
+    // Add event listeners to the exercise start button
+    const exerciseCards = document.querySelectorAll('.exercise-card .start');
+    exerciseCards.forEach(card => {
+        card.addEventListener('click', handleExerciseStart);
+    });
+}
+
+function handleExerciseStart(e) {
+    const exerciseId = e.target.closest('.exercise-card').dataset.id;
+    showExersiceInfoModal(exerciseId);
 }
 
 function clearMarkup() {
