@@ -167,6 +167,15 @@ function removeFromFavorites(exerciseId) {
     // Remove exercise from favorites
     const updatedFavorites = favoritesArr.filter(id => id !== exerciseId);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+
+    // Remove exercise from favorites list if it's open
+    const favoritesList = document.querySelector('.favorites');
+    if (favoritesList) {
+        const exerciseCard = favoritesList.querySelector(`.exercise-card[data-id="${exerciseId}"]`);
+        if (exerciseCard) {
+            exerciseCard.remove();
+        }
+    }
 }
 
 function isFavorite(exerciseId) {

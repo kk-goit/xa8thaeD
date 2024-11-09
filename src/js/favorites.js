@@ -65,18 +65,20 @@ function renderUserListFavorites(listFavorites) {
 
 function removeExercise(exerciseId) {
     removeFromFavorites(exerciseId);
-    document.querySelector(`.exercise-card[data-id="${exerciseId}"]`).remove();
 }
 
-const favoriteExercises = JSON.parse(localStorage.getItem('favorites'));
-console.log('favoriteExercises', favoriteExercises);
+const favoritesElement = document.querySelector('.favorites');
 
-if (favoriteExercises && Array.isArray(favoriteExercises)) {
-    replaceInnerHtmlWithLoader(favorites);
-    renderUserListFavorites(favoriteExercises);
-} else {
-    favorites.innerHTML =
-        "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+if (favoritesElement) {
+    const favoriteExercises = JSON.parse(localStorage.getItem('favorites'));
+
+    if (favoriteExercises && Array.isArray(favoriteExercises)) {
+        replaceInnerHtmlWithLoader(favorites);
+        renderUserListFavorites(favoriteExercises);
+    } else {
+        favorites.innerHTML =
+            "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+    }
 }
 
 export { removeExercise };
