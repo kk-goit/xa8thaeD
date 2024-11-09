@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(04, 04, 04, 0.4);
+    background-color: var(--color-popup-backdrop);
     transition: opacity var(--transition), visibility var(--transition);
     opacity: 0;
     pointer-events: none;

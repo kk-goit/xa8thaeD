@@ -6,6 +6,7 @@
     height: 40px;
     border: none;
     background: var(--color-main-dark);
+    border: 1px solid var(--color-mm-social-border);
     border-radius: 50%;
     display: flex;
     justify-content: center;
