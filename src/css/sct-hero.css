@@ -1,10 +1,7 @@
 
 
 /* Глобальні стилі */
-.container {
-    width: 100%;
-    margin: 0 auto;
-}
+
 
 .tags span {
     padding: 5px 10px;
@@ -39,17 +36,7 @@
 @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
     screen and (min-resolution: 192dpi) and (max-width: 767px),
     screen and (min-resolution: 2dppx) and (max-width: 767px) {
-    .container {
-        max-width: 335px;
-    }
-        .hero-section {
-            max-width: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            align-items: center;
-            text-align: left;
-        }
+    
 
     .hero-content {
         position: relative;
@@ -126,10 +113,7 @@
 
 /*  TABLET Медіазапит для екранів з мінімальною шириною 768px */
 @media screen and (min-width: 768px) {
-    .container {
-        max-width: 768px;
-        margin: 0 auto;
-    }
+    
 
 
 
@@ -210,10 +194,7 @@
 
 /* DESKTOP Медіазапит для екранів з мінімальною шириною 1441px */
 @media screen and (min-width: 1441px) {
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+    
 
     .text-content {
         max-width: 60%;
