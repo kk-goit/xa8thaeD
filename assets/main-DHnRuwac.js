@@ -77,7 +77,7 @@ import{a as re}from"./vendor-v1Cmh7Ux.js";(function(){const t=document.createEle
         <p class="exercise-name">${i.name.split(" ").slice(0,2).join(" ")}</p>
     </div>
     <div class="details">
-        <p>Burned calories: <span>${i.burnedCalories}</span></p>
+        <p>Burned calories: <span>${i.burnedCalories} / ${i.time} min</span></p>
         <p>Body part: <span>${i.bodyPart}</span></p>
         <p>Target: <span>${i.target}</span></p>
     </div>
@@ -99,4 +99,4 @@ import{a as re}from"./vendor-v1Cmh7Ux.js";(function(){const t=document.createEle
       </div>
     </div>
   `,Pe=e=>e.map(Ce).join(""),Oe=e=>{const t=document.querySelector(".group-list");if(!t)return;const s=Pe(e);t.innerHTML=s},He=async e=>await g.getExercisesByFilter(e),F=async(e="Muscles",t=1,s=screen.width>767?12:9)=>{t=J(),v=e.toLowerCase(),v==="body parts"&&(v="bodypart"),S(document.querySelector(".group-list"));const r=await He({filter:e,page:t,limit:s});Oe(r.results),B("category"),console.group(t,"renderGroupListByFilter",v,e,r.totalPages),he(r.totalPages,F,e)},X=Array.from(document.querySelectorAll(".exercises-menu-button")),Fe=e=>{const t=document.querySelector(".section-title"),s=document.querySelector(".exercises-form");t.innerHTML="Exercises",X.forEach(r=>{r.classList.remove("active")}),e.classList.add("active"),s.classList.add("visually-hidden"),de(),F(e.textContent)};X.forEach(e=>e.addEventListener("click",()=>Fe(e)));const k=document.getElementById("scrollToTop");window.addEventListener("scroll",()=>{window.scrollY>300?k.style.display="flex":k.style.display="none"});k.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})});export{g as y};
-//# sourceMappingURL=main-CN6SeIsk.js.map
+//# sourceMappingURL=main-DHnRuwac.js.map
