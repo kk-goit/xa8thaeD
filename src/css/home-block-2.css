@@ -23,7 +23,6 @@
 .exercises-menu-list {
     display: flex;
     gap: 20px;
-    margin-top: 20px;
 }
 
 .exercises-menu-button {
@@ -53,10 +52,15 @@
     .section-title {
         font-size: 44px;
         line-height: 1.09;
+        flex-basis: 100%;
     }
 
-    .exercises-menu-list {
-        margin-top: 32px;
+    .section-top:has(.exercises-form) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        row-gap: 32px;
     }
 
     .exercises-menu-button {

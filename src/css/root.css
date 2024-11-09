@@ -30,6 +30,7 @@
     --color-workout-border: rgba(239, 237, 232, 0.2);
     --color-workout-light: rgba(36, 36, 36, 0.4);
 
+    --color-popup-backdrop: rgba(4, 4, 4, 0.4);
     --color-popup-bg: #242424;
     --color-popup-txt: rgba(244, 244, 244, 0.6);
     --color-popup-main: #f4f4f4;
@@ -66,11 +67,12 @@ html {
 
 .visually-hidden {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    width: 1px !important;
+    height: 1px !important;
     margin: -1px;
     border: 0;
     padding: 0;
+    display: none !important;
 
     white-space: nowrap;
     clip-path: inset(100%);
@@ -82,7 +84,7 @@ body {
     font-family: 'DM Sans', serif;
     font-weight: 500;
     color: var(--clr-main-dark);
-    background-color: var(--clr-main-bg);
+    background-color: var(--color-main-bg);
     min-width: 320px;
 
     /*  For better font rendering */

@@ -2,6 +2,7 @@
   font-family: var(--font-family);
   display: flex;
   flex-direction: row;
+  align-content: flex-start;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -59,8 +60,12 @@
 }
 
 @media (min-width: 1168px) {
-  .group-list__item {
-    height: 242px;
-    flex-basis: 290px;
-  }
+    .group-list {
+       width: 900px;
+    }
+
+    .group-list__item {
+        height: 242px;
+        flex-basis: 290px;
+    }
 }
