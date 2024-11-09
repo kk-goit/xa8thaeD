@@ -1,0 +1,51 @@
+import{a as V}from"./vendor-v1Cmh7Ux.js";(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))n(r);new MutationObserver(r=>{for(const o of r)if(o.type==="childList")for(const a of o.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&n(a)}).observe(document,{childList:!0,subtree:!0});function s(r){const o={};return r.integrity&&(o.integrity=r.integrity),r.referrerPolicy&&(o.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?o.credentials="include":r.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function n(r){if(r.ep)return;r.ep=!0;const o=s(r);fetch(r.href,o)}})();const C=document.querySelector(".mobile-menu"),J=document.querySelector(".mobile-menu-open-btn"),K=document.querySelector(".mobile-menu-close-btn");J.addEventListener("click",()=>{C.classList.add("is-open")});K.addEventListener("click",()=>{C.classList.remove("is-open")});document.addEventListener("DOMContentLoaded",()=>{const t=window.location.pathname;document.querySelectorAll(".nav-item .nav-link").forEach(e=>{e.closest(".nav-item").classList.toggle("active",t.endsWith(e.getAttribute("href").substring(1)))})});const W={baseURL:"https://your-energy.b.goit.study/api",timeout:1e4,headers:{"Content-Type":"application/json"}},z=["Body parts","Muscles","Equipment"];class X{constructor(){this.api=V.create(W),this.api.interceptors.response.use(e=>e.data,e=>Promise.reject(e))}handleDefaultError(e){switch(e.status){case 400:return"Please check your input and try again.";case 404:return"This training page took a rest day. Please try again.";case 500:return"Our fitness server needs a quick breather. Please try again.";default:if(e.response){const{data:n}=e.response;return n.message||"Something unexpected happened"}else return e.request?e.request.statusText:`Error: ${e.message}`}}async getExercises(e={}){if(!e.page||!e.limit||typeof e.page!="number"||typeof e.limit!="number")return"Please specify page and items per page";try{return await this.api.get("/exercises",{params:e})}catch(s){switch(s.status){case 409:return"Select a filter to view results";case 500:return"Our fitness server needs a quick breather. Please try again.";default:return this.handleDefaultError(s)}}}async addRating(e,s,n,r){const o={rate:s,email:n,review:r};try{return await this.api.patch(`/exercises/${e}/rating`,o)}catch(a){switch(a.status){case 404:return"Exercise not found. Try exploring similar ones.";case 409:return"Looks like your email is already part of this exercise community!";default:return this.handleDefaultError(a)}}}async getExerciseById(e){try{return await this.api.get(`/exercises/${e}`)}catch(s){switch(s.status){case 404:return"Exercise not found. Try exploring similar ones.";case 409:return"Looks like your email is already part of this exercise community!";default:return this.handleDefaultError(s)}}}async getExercisesByFilter(e={}){if(!e.page||!e.limit||typeof e.page!="number"||typeof e.limit!="number")return"Please specify page and items per page";if(!z.includes(e.filter))return"Filter not found. Check out our available categories";try{return await this.api.get("/filters",{params:e})}catch(s){switch(s.status){case 404:return"The way to exercises not found. Try exploring similar ones.";default:return this.handleDefaultError(s)}}}async orderSubscription(e){if(!e)return"Email is not provided";try{return await this.api.post("/subscription",{email:e})}catch(s){switch(s.status){case 404:return"The way to subscription not found. Try exploring similar ones.";case 409:return"Looks like such a subscription is already part of this community!";default:return this.handleDefaultError(s)}}}async getExercisesByIdList(e){if(!e.length)return"Please specify list of exercises to get";const s=e.map(async r=>await this.getExerciseById(r));return(await Promise.allSettled(s)).filter(r=>r.status==="fulfilled").map(r=>r.value)}async getQuote(){try{return await this.api.get("/quote")}catch(e){return this.handleDefaultError(e)}}}const v=new X,P=new Date().toISOString().slice(0,10),x=document.querySelector(".blockquote-text"),b=document.querySelector(".quote-author"),h=JSON.parse(localStorage.getItem("quoteOfDay"));h&&h.date===P?(x.innerHTML=h.quote,b.innerHTML=h.author):v.getQuote().then(t=>{typeof t!="string"?(localStorage.setItem("quoteOfDay",JSON.stringify({quote:t.quote,author:t.author,date:P})),x.innerHTML=t.quote,b.innerHTML=t.author):console.log(t)}).catch(()=>{x.innerHTML="A lot of times I find that people who are blessed with the most talent don't ever develop that attitude, and the ones who aren't blessed in that way are the most competitive and have the biggest heart.",b.innerHTML="Tom Brady"});let k=null;function Z(){q=1,L=1,M=1}function ee(){L=1}function T(t){k!==t&&(Z(),k=t)}let q=1;function te(t){q=t}function H(){return q}async function se(t,e,...s){p(t,e,te,H,...s)}let L=1;function re(t){L=t}function $(){return L}async function ne(t,e,...s){p(t,e,re,$,...s)}let M=1;function ie(t){M=t}function _(){return M}async function oe(t,e,...s){p(t,e,ie,_,...s)}function p(t,e,s,n,...r){const o=document.querySelector(".pagination");o.innerHTML="";const a=n(),R=Q();o.appendChild(R);const m=5;let l=Math.max(1,a-Math.floor(m/2)),f=Math.min(t,l+m-1);f-l+1<m&&(l=Math.max(1,f-m+1)),l>1&&(E(1),l>2&&O());for(let i=l;i<=f;i++)E(i);f<t&&(f<t-1&&O(),E(t));const Y=U();o.appendChild(Y);function E(i){const y=document.createElement("button");y.textContent=i,y.classList.add("page-button"),i===a&&y.classList.add("active"),y.addEventListener("click",async()=>{s(i),await e(...r),p(t,e,s,n,...r)}),o.appendChild(y)}function O(){const i=document.createElement("span");i.textContent="...",i.classList.add("ellipsis"),o.appendChild(i)}function Q(){const i=document.createElement("button");return i.innerHTML="←",i.classList.add("page-button"),i.disabled=a===1,i.addEventListener("click",async()=>{a>1&&(s(a-1),await e(...r),p(t,e,s,n,...r))}),i}function U(){const i=document.createElement("button");return i.innerHTML="→",i.classList.add("page-button"),i.disabled=a===t,i.addEventListener("click",async()=>{a<t&&(s(a+1),await e(...r),p(t,e,s,n,...r))}),i}}const w="/xa8thaeD/assets/icons-DfGzQ-YE.svg",I=document.querySelector(".exercises-form");let F=10,c="muscles",u="",g="";I.addEventListener("submit",ae);function ae(t){if(t.preventDefault(),g=t.target.elements.search.value.trim(),console.log(g),!g){alert("Please, enter a search words");return}G(),t.target.elements.search.value=""}async function G(){const t=H(),e=await v.getExercises({page:t,limit:F,[c]:u,keyword:g});console.group(t,"searchListOfExercises",c,u,g,e,e.totalPages),N(e.results),T("search"),se(e.totalPages,G,c,u,g)}async function A(t,e){const s=_();switch(t){case"muscles":c="muscles";break;case"equipment":c="equipment";break;case"bodypart":c="bodypart";break}u=e;try{const n=await v.getExercises({page:s,limit:F,[c]:u});I.classList.remove("visually-hidden"),console.group(s,"findListOfExercises",c,u,n,n.totalPages),N(n.results),T("exercises"),oe(n.totalPages,A,c,u)}catch(n){ce(),console.log(n)}finally{console.log("Buy")}}const D=document.querySelector(".group-list");function N(t){const e=t.map(s=>`
+<li class="exercise-card" data-id=${s._id}>
+  <div class="top-row">
+  <div class="rating">
+        <p class="badge">WORKOUT</p>
+        <div class="rating-star">
+            <span class='text-star'>${s.rating}</span>
+           <svg class="star-icon" width="18" height="18">
+                    <use href="${w}#icon-star-18"></use>
+                </svg>
+        </div>
+        </div>
+        <button class="start">
+            Start
+            <svg class="icon-arrow-right" width="13" height="13">
+                    <use href="${w}#icon-arrow-right"></use>
+                </svg>
+        </button>
+    </div>
+    <div class="exercise-info">
+    <div class="icon-wrapper">
+    <svg class="arrow-running-icon" width="14" height="16">                     
+        <use href="${w}#icon-running-stick-figure"></use>
+    </svg>
+</div>
+        <p class="exercise-name">${s.name.split(" ").slice(0,2).join(" ")}</p>
+    </div>
+    <div class="details">
+        <p>Burned calories: <span>${s.burnedCalories}</span></p>
+        <p>Body part: <span>${s.bodyPart}</span></p>
+        <p>Target: <span>${s.target}</span></p>
+    </div>
+</li>`).join("");D.innerHTML=e}function ce(){D.innerHTML=""}let d="";document.addEventListener("DOMContentLoaded",()=>{const t=document.querySelector(".group-list"),e=document.querySelector(".section-title");t?(t.addEventListener("click",s=>{const n=s.target.closest(".group-list__item");n&&(A(d,n.dataset.name),e.innerHTML=`Exercises / <span class='exercises-category'>${n.dataset.name}</span>`)}),B()):console.warn("Елемент .group-list не знайдено.")});const ue=({filter:t,name:e,imgURL:s})=>`
+    <div
+      class="group-list__item"
+      data-name="${e}"
+    >
+      <img
+        class="group-list__item-image"
+        src="${s}"
+      >
+      <div class="group-list__item-image-filter"></div>
+      <div class="group-list__item-title">
+        ${e}
+      </div>
+      <div class="group-list__item-subtitle">
+        ${t}
+      </div>
+    </div>
+  `,le=t=>t.map(ue).join(""),de=t=>{const e=document.querySelector(".group-list");if(!e)return;const s=le(t);e.innerHTML=s},pe=async t=>await v.getExercisesByFilter(t),B=async({filter:t="Muscles",page:e=1,limit:s=12}={})=>{e=$(),d=t.toLowerCase(),d==="body parts"&&(d="bodypart");const n=await pe({filter:t,page:e,limit:s});de(n.results),T("category"),console.group(e,"renderGroupListByFilter",d,t,n.totalPages),ne(n.totalPages,B,d)},j=Array.from(document.querySelectorAll(".exercises-menu-button")),ge=t=>{const e=document.querySelector(".section-title"),s=document.querySelector(".exercises-form");e.innerHTML="Exercises",j.forEach(n=>{n.classList.remove("active")}),t.classList.add("active"),s.classList.add("visually-hidden"),ee(),B({filter:t.textContent})};j.forEach(t=>t.addEventListener("click",()=>ge(t)));const S=document.getElementById("scrollToTop");window.addEventListener("scroll",()=>{window.scrollY>300?S.style.display="flex":S.style.display="none"});S.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})});export{v as y};
+//# sourceMappingURL=main-QwKqHFaJ.js.map
