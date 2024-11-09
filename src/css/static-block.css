@@ -1,3 +1,7 @@
+.static-block-wrapper {
+    order: 2;
+}
+
 .static-image {
     border-radius: 20px;
     margin-top: 20px;
@@ -59,7 +63,6 @@
         flex-wrap: wrap;
         justify-content: space-between;
         row-gap: 32px;
-        order: 2;
     }
 
     .static-block {
