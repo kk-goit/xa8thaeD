@@ -208,8 +208,8 @@
     }
 }
 
-/* DESKTOP Медіазапит для екранів з мінімальною шириною 1280px */
-@media screen and (min-width: 1280px) {
+/* DESKTOP Медіазапит для екранів з мінімальною шириною 1441px */
+@media screen and (min-width: 1441px) {
     .container {
         max-width: 1200px;
         margin: 0 auto;
