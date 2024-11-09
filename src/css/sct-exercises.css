@@ -81,7 +81,7 @@
 .rating {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 9px;
 }
 
 .rating-star {
@@ -602,6 +602,17 @@
 
 .rating-star__full {
     fill: var(--color-stars-full);
+}
+
+.remove-favorite {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.remove-favorite__icon {
+    fill: var(--color-main-dark);
 }
 
 /* #endregion */

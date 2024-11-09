@@ -6,8 +6,9 @@ import {
     changeFetchMethod,
 } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
-import showExersiceInfoModal from './exercise-info.js';
+import { showExersiceInfoModal } from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
+import { removeExercise } from './favorites.js';
 
 import {
     replaceInnerHtmlWithLoader,
@@ -61,7 +62,7 @@ async function searchListOfExercises() {
         listOfExercises,
         listOfExercises.totalPages
     );
-    renderUserListExercises(listOfExercises.results);
+    renderUserListExercises(exercises, listOfExercises.results);
     changeFetchMethod('search');
     renderPaginationButtonsSearch(
         listOfExercises.totalPages,
@@ -112,7 +113,7 @@ async function findListOfExercises(catName, catValue) {
             listOfExercises,
             listOfExercises.totalPages
         );
-        renderUserListExercises(listOfExercises.results);
+        renderUserListExercises(exercises, listOfExercises.results);
         changeFetchMethod('exercises');
         renderPaginationButtonsExercises(
             listOfExercises.totalPages,
@@ -130,7 +131,9 @@ async function findListOfExercises(catName, catValue) {
     }
 }
 
-function renderUserListExercises(listExercises) {
+function renderUserListExercises(element, listExercises) {
+    const isFavorites = element.classList.contains('favorites');
+    
     const markup = listExercises
         .map(
             exercise => `
@@ -138,12 +141,19 @@ function renderUserListExercises(listExercises) {
   <div class="top-row">
   <div class="rating">
         <p class="badge">WORKOUT</p>
-        <div class="rating-star">
-            <span class='text-star'>${exercise.rating}</span>
-           <svg class="star-icon" width="18" height="18">
-                    <use href="${iconsSVG}#icon-star-18"></use>
+        ${isFavorites ? `
+            <button type="button" class="remove-favorite" data-id=${exercise._id}>
+                <svg width="16" height="16">
+                    <use class="remove-favorite__icon" href="${iconsSVG}#icon-trash"></use>
                 </svg>
-        </div>
+            </button>` 
+        : `<div class="rating-star">
+                <span class='text-star'>${exercise.rating}</span>
+                    <svg class="star-icon" width="18" height="18">
+                        <use href="${iconsSVG}#icon-star-18"></use>
+                    </svg>
+            </div>
+        `}
         </div>
         <button class="start">
             Start
@@ -172,13 +182,20 @@ function renderUserListExercises(listExercises) {
         )
         .join('');
 
-    exercises.innerHTML = markup;
+        element.innerHTML = markup;
 
     // Add event listeners to the exercise start button
     const exerciseCards = document.querySelectorAll('.exercise-card .start');
     exerciseCards.forEach(card => {
         card.addEventListener('click', handleExerciseStart);
     });
+
+    if (isFavorites) {
+        const removeFavoriteButtons = document.querySelectorAll('.remove-favorite');
+        removeFavoriteButtons.forEach(button => {
+            button.addEventListener('click', handleRemoveFavorite);
+        });
+    }
 }
 
 function handleExerciseStart(e) {
@@ -186,8 +203,14 @@ function handleExerciseStart(e) {
     showExersiceInfoModal(exerciseId);
 }
 
+function handleRemoveFavorite(e) {
+    const exerciseCard = e.target.closest('.exercise-card');
+    const exerciseId = exerciseCard.dataset.id;
+    removeExercise(exerciseId);
+}
+
 function clearMarkup() {
     exercises.innerHTML = '';
 }
 
-export { findListOfExercises };
+export { findListOfExercises, renderUserListExercises };
