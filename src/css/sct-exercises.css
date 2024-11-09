@@ -287,18 +287,23 @@
 }
 
 .page-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: none;
-  border-radius: 50%;
-  font-size: 16px;
-  color: var(--color-pager-light);
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    color: var(--color-pager-light);
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    font-family: 'DM Sans';
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.33;
+    letter-spacing: 0.04em;
 }
 
 .page-button.active {

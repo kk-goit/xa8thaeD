@@ -1,10 +1,14 @@
 import {
-    renderPaginationButtons,
-    getCurrentPage,
+    renderPaginationButtonsSearch,
+    renderPaginationButtonsExercises,
+    getCurrentPageSearch,
+    getCurrentPageExercises,
+    changeFetchMethod,
 } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
 import showExersiceInfoModal from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
+
 const exercisesForm = document.querySelector('.exercises-form');
 
 // const notFoundTextEl = document.querySelector('.not-found-text');
@@ -22,7 +26,7 @@ function handlerSearchFormSubmit(e) {
     keyword = e.target.elements.search.value.trim();
     console.log(keyword);
     if (!keyword) {
-        ('Please, enter a search words');
+        alert('Please, enter a search words');
         return;
     }
     searchListOfExercises();
@@ -30,26 +34,44 @@ function handlerSearchFormSubmit(e) {
 }
 
 async function searchListOfExercises() {
-    const page = getCurrentPage();
+    const page = getCurrentPageSearch();
     const listOfExercises = await yourEnergy.getExercises({
         page,
         limit,
         [categoryName]: categoryValue,
         keyword,
     });
+    console.group(
+        page,
+        'searchListOfExercises',
+        categoryName,
+        categoryValue,
+        keyword,
+        listOfExercises,
+        listOfExercises.totalPages
+    );
     renderUserListExercises(listOfExercises.results);
+    changeFetchMethod('search');
+    renderPaginationButtonsSearch(
+        listOfExercises.totalPages,
+        searchListOfExercises,
+        categoryName,
+        categoryValue,
+        keyword
+    );
 }
 
 async function findListOfExercises(catName, catValue) {
-    const page = getCurrentPage();
-    switch (catName.toLowerCase()) {
+    const page = getCurrentPageExercises();
+    switch (catName) {
         case 'muscles':
             categoryName = 'muscles';
             break;
         case 'equipment':
             categoryName = 'equipment';
             break;
-        case 'body parts':
+        // case 'body parts':
+        case 'bodypart':
             categoryName = 'bodypart';
             break;
     }
@@ -68,9 +90,17 @@ async function findListOfExercises(catName, catValue) {
         // }
 
         exercisesForm.classList.remove('visually-hidden');
-
+        console.group(
+            page,
+            'findListOfExercises',
+            categoryName,
+            categoryValue,
+            listOfExercises,
+            listOfExercises.totalPages
+        );
         renderUserListExercises(listOfExercises.results);
-        renderPaginationButtons(
+        changeFetchMethod('exercises');
+        renderPaginationButtonsExercises(
             listOfExercises.totalPages,
             findListOfExercises,
             categoryName,
@@ -130,17 +160,6 @@ function renderUserListExercises(listExercises) {
         .join('');
 
     exercises.innerHTML = markup;
-
-    // Add event listeners to the exercise start button
-    const exerciseCards = document.querySelectorAll('.exercise-card .start');
-    exerciseCards.forEach(card => {
-        card.addEventListener('click', handleExerciseStart);
-    });
-}
-
-function handleExerciseStart(e) {
-    const exerciseId = e.target.closest('.exercise-card').dataset.id;
-    showExersiceInfoModal(exerciseId);
 }
 
 function clearMarkup() {
