@@ -1,4 +1,4 @@
-import"./assets/main-QwKqHFaJ.js";import"./assets/vendor-v1Cmh7Ux.js";const c=document.querySelector(".favorites"),l=document.querySelector(".pagination"),o=10;let r=1;function g(t,a=1){const n=(a-1)*o,e=n+o,u=t.slice(n,e).map(s=>`
+import"./assets/main-Ct10rxhu.js";import"./assets/vendor-v1Cmh7Ux.js";const c=document.querySelector(".favorites"),l=document.querySelector(".pagination"),o=10;let r=1;function g(t,a=1){const n=(a-1)*o,e=n+o,u=t.slice(n,e).map(s=>`
 <li class="exercise-card" data-id=${s._id}>
   <div class="top-row">
     <div class="rating">
