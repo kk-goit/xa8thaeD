@@ -2,6 +2,7 @@ import {
     replaceInnerHtmlWithLoader,
     removeLoaderFromElement,
 } from './loader.js';
+import yourEnergy from './api/your-energy-api.js';
 
 const favorites = document.querySelector('.favorites');
 
@@ -9,14 +10,24 @@ const paginationContainer = document.querySelector('.pagination');
 const exercisesPerPage = 10;
 let currentPage = 1;
 
-function renderExercisesPage(favoritesList, page = 1) {
+async function renderExercisesPage(favoritesList, page = 1) {
     const startIndex = (page - 1) * exercisesPerPage;
     const endIndex = startIndex + exercisesPerPage;
     const currentExercises = favoritesList.slice(startIndex, endIndex);
 
-    const markup = currentExercises
-        .map(
-            exercise => `
+    if (!currentExercises.length) {
+        favorites.innerHTML =
+            "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+        return;
+    }
+    try {
+        const retrievedExercises = await yourEnergy.getExercisesByIdList(
+            currentExercises
+        );
+
+        const markup = retrievedExercises
+            .map(
+                exercise => `
 <li class="exercise-card" data-id=${exercise._id}>
   <div class="top-row">
     <div class="rating">
@@ -49,11 +60,13 @@ function renderExercisesPage(favoritesList, page = 1) {
     <p>Target: <strong>${exercise.target}</strong></p>
   </div>
 </li>`
-        )
-        .join('');
-    // favorites.insertAdjacentHTML('beforeend', markup);
-    favorites.innerHTML = markup;
-    removeLoaderFromElement(favorites);
+            )
+            .join('');
+        // favorites.insertAdjacentHTML('beforeend', markup);
+        favorites.innerHTML = markup;
+    } finally {
+        removeLoaderFromElement(favorites);
+    }
 }
 
 function renderPagination(favoritesList) {
@@ -99,6 +112,7 @@ function removeExercise(exerciseId) {
 }
 
 const favoriteExercises = JSON.parse(localStorage.getItem('favorites'));
+console.log('favoriteExercises', favoriteExercises);
 
 if (favoriteExercises && Array.isArray(favoriteExercises)) {
     replaceInnerHtmlWithLoader(favorites);

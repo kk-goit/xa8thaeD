@@ -18,7 +18,9 @@ let categoryName = 'muscles';
 let categoryValue = '';
 let keyword = '';
 
-exercisesForm.addEventListener('submit', handlerSearchFormSubmit);
+if (exercisesForm) {
+    exercisesForm.addEventListener('submit', handlerSearchFormSubmit);
+}
 
 function handlerSearchFormSubmit(e) {
     e.preventDefault();
