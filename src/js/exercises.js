@@ -4,6 +4,7 @@ import {
 } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
 import showExersiceInfoModal from './exercise-info.js';
+import iconsSVG from '../img/icons.svg';
 const exercisesForm = document.querySelector('.exercises-form');
 
 // const notFoundTextEl = document.querySelector('.not-found-text');
@@ -97,21 +98,21 @@ function renderUserListExercises(listExercises) {
         <div class="rating-star">
             <span class='text-star'>${exercise.rating}</span>
            <svg class="star-icon" width="18" height="18">
-                    <use href="./img/icons.svg#icon-star-18"></use>
+                    <use href="${iconsSVG}#icon-star-18"></use>
                 </svg>
         </div>
         </div>
         <button class="start">
             Start
             <svg class="icon-arrow-right" width="13" height="13">
-                    <use href="./img/icons.svg#icon-arrow-right"></use>
+                    <use href="${iconsSVG}#icon-arrow-right"></use>
                 </svg>
         </button>
     </div>
     <div class="exercise-info">
     <div class="icon-wrapper">
     <svg class="arrow-running-icon" width="14" height="16">                     
-        <use href="./img/icons.svg#icon-running-stick-figure"></use>
+        <use href="${iconsSVG}#icon-running-stick-figure"></use>
     </svg>
 </div>
         <p class="exercise-name">${exercise.name

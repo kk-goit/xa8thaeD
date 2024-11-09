@@ -1,5 +1,6 @@
 import api from './api/your-energy-api';
 import modal from './modal';
+import iconsSVG from '../img/icons.svg';
 
 function showExersiceInfoModal(exerciseId) {
     fetchExerciseInfoById(exerciseId).then(exerciseInfo => {
@@ -99,7 +100,7 @@ function getRatingStarsHTML(rating) {
     for (let i = 0; i < ratingInt; i++) {
         stars.push(
             `<svg width="18" height="18">
-                <use class="rating-star__full" href="./img/icons.svg#icon-star-18"></use>
+                <use class="rating-star__full" href="${iconsSVG}#icon-star-18"></use>
             </svg>`
         );
     }
@@ -115,7 +116,7 @@ function getRatingStarsHTML(rating) {
                         <stop offset="0%" stop-color="var(--color-stars-empty)" />
                     </linearGradient>
                 </defs>
-                <use class="rating-star" href="./img/icons.svg#icon-star-18" fill="url('#myGradient')"></use>
+                <use class="rating-star" href="${iconsSVG}#icon-star-18" fill="url('#myGradient')"></use>
             </svg>`
         );
     }
@@ -124,7 +125,7 @@ function getRatingStarsHTML(rating) {
     while (stars.length < 5) {
         stars.push(
             `<svg width="18" height="18">
-                <use class="rating-star__empty" href="./img/icons.svg#icon-star-18"></use>
+                <use class="rating-star__empty" href="${iconsSVG}#icon-star-18"></use>
             </svg>`
         );
     }
@@ -187,7 +188,7 @@ function getAddedToFavoritesBtnHTML(exerciseId) {
     return `
         ${isFav ? 'Remove from favorites' : 'Add to favorites'}
         <svg width="20" height="20">
-            <use class="modal-close-icon" href="./img/icons.svg#${isFav ? 'icon-trash' : 'icon-heart'}"></use>
+            <use class="modal-close-icon" href="${iconsSVG}#${isFav ? 'icon-trash' : 'icon-heart'}"></use>
         </svg>
     `;
 }
