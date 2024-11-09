@@ -1,10 +1,6 @@
-footer.container {
-    background-color: var(--color-main-dark);
-    color: var(--color-popup-main);
-    padding: 40px 20px 10px 20px;
-    margin-top: 80px;
-    max-width: 100%;
+footer {
     width: 100%;
+    background-color: var(--color-main-dark);
 }
 
 @media only screen and (min-width: 768px) {
@@ -15,7 +11,7 @@ footer.container {
 }
 
 @media only screen and (min-width: 1440px) {
-    footer.container  {
+    footer.container {
         margin-top: 132px;
     }
 }
@@ -25,6 +21,10 @@ footer.container {
     flex-direction: column;
     justify-content: flex-start;
     align-items: start;
+    background-color: var(--color-main-dark);
+    color: var(--color-popup-main);
+    padding: 40px 20px 10px 20px;
+    margin-top: 80px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -56,7 +56,6 @@ footer.container {
         justify-content: space-between;
         width: 100%;
     }
-
 }
 
 .footer-logo-socials {
