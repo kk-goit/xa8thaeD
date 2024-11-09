@@ -160,7 +160,19 @@ function renderUserListExercises(listExercises) {
         .join('');
 
     exercises.innerHTML = markup;
+
+    // Add event listeners to the exercise start button
+    const exerciseCards = document.querySelectorAll('.exercise-card .start');
+    exerciseCards.forEach(card => {
+        card.addEventListener('click', handleExerciseStart);
+    });
 }
+    
+function handleExerciseStart(e) {
+    const exerciseId = e.target.closest('.exercise-card').dataset.id;
+    showExersiceInfoModal(exerciseId);
+}
+
 
 function clearMarkup() {
     exercises.innerHTML = '';
