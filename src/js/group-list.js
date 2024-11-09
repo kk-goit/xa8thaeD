@@ -89,9 +89,9 @@ export const renderGroupListByFilter = async ({
     //     activeButtonText = filter.toLowerCase();
     // }
     // activeButtonText = filter.toLowerCase();
-    // if (activeButtonText === 'body parts') {
-    //     activeButtonText = 'bodypart';
-    // }
+    if (activeButtonText === 'body parts') {
+         activeButtonText = 'bodypart';
+    }
     // console.log('renderGroupListByFilter before', filter);
     // console.log('renderGroupListByFilter before', activeButtonText);
     const data = await fetchDataByFilter({ filter, page, limit });
