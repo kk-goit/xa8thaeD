@@ -18,7 +18,6 @@ const exercisesForm = document.querySelector('.exercises-form');
 // const notFoundTextEl = document.querySelector('.not-found-text');
 const exercises = document.querySelector('.group-list');
 
-let limit = 10;
 let categoryName = 'muscles';
 let categoryValue = '';
 let keyword = '';
@@ -26,6 +25,8 @@ let keyword = '';
 if (exercisesForm) {
     exercisesForm.addEventListener('submit', handlerSearchFormSubmit);
 }
+
+function getLimit() { return screen.width > 767 ? 10 : 8; }
 
 function handlerSearchFormSubmit(e) {
     e.preventDefault();
@@ -44,6 +45,7 @@ async function searchListOfExercises() {
     const page = getCurrentPageSearch();
     replaceInnerHtmlWithLoader(exercises);
 
+    const limit = getLimit();
     const listOfExercises = await yourEnergy.getExercises({
         page,
         limit,
@@ -88,6 +90,7 @@ async function findListOfExercises(catName, catValue) {
     categoryValue = catValue;
     replaceInnerHtmlWithLoader(exercises);
     try {
+        const limit = getLimit();
         const listOfExercises = await yourEnergy.getExercises({
             page,
             limit,

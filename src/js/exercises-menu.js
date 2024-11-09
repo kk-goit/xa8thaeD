@@ -13,7 +13,7 @@ const execisesMenuButtonHandler = element => {
     element.classList.add('active');
     exercisesForm.classList.add('visually-hidden');
     resetCurrentPageFilter(); //Added By Ruslan Isupov Скидання сторінки до 1 при натисканні на фільтр категорії ;
-    renderGroupListByFilter({ filter: element.textContent });
+    renderGroupListByFilter(element.textContent);
 };
 
 buttons.forEach(el =>
