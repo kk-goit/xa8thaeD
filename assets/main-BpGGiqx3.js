@@ -89,4 +89,4 @@ import{a as G}from"./vendor-v1Cmh7Ux.js";(function(){const e=document.createElem
       </div>
     </div>
   `,ne=t=>t.map(ie).join(""),re=t=>{const e=document.querySelector(".group-list");if(!e)return;const s=ne(t);e.innerHTML=s},oe=async t=>await g.getExercisesByFilter(t),S=async({filter:t="Muscles",page:e=1,limit:s=12}={})=>{const i=await oe({filter:t,page:e,limit:s});e=x(),E=t.toLowerCase(),re(i.results),p(i.totalPages,S,E)},P=Array.from(document.querySelectorAll(".exercises-menu-button")),ae=t=>{const e=document.querySelector(".section-title"),s=document.querySelector(".exercises-form");e.innerHTML="Exercises",P.forEach(i=>{i.classList.remove("active")}),t.classList.add("active"),s.classList.add("visually-hidden"),S({filter:t.textContent})};P.forEach(t=>t.addEventListener("click",()=>ae(t)));const w=document.getElementById("scrollToTop");window.addEventListener("scroll",()=>{window.scrollY>300?w.style.display="flex":w.style.display="none"});w.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})});export{g as y};
-//# sourceMappingURL=main-13b6ZfOe.js.map
+//# sourceMappingURL=main-BpGGiqx3.js.map
