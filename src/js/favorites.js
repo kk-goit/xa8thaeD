@@ -1,17 +1,22 @@
+import {
+    replaceInnerHtmlWithLoader,
+    removeLoaderFromElement,
+} from './loader.js';
+
 const favorites = document.querySelector('.favorites');
 
 const paginationContainer = document.querySelector('.pagination');
 const exercisesPerPage = 10;
 let currentPage = 1;
 
-
-
 function renderExercisesPage(favoritesList, page = 1) {
     const startIndex = (page - 1) * exercisesPerPage;
     const endIndex = startIndex + exercisesPerPage;
     const currentExercises = favoritesList.slice(startIndex, endIndex);
 
-    const markup = currentExercises.map(exercise => `
+    const markup = currentExercises
+        .map(
+            exercise => `
 <li class="exercise-card" data-id=${exercise._id}>
   <div class="top-row">
     <div class="rating">
@@ -48,6 +53,7 @@ function renderExercisesPage(favoritesList, page = 1) {
         .join('');
     // favorites.insertAdjacentHTML('beforeend', markup);
     favorites.innerHTML = markup;
+    removeLoaderFromElement(favorites);
 }
 
 function renderPagination(favoritesList) {
@@ -56,7 +62,9 @@ function renderPagination(favoritesList) {
 
     for (let i = 1; i <= pageCount; i++) {
         paginationMarkup += `
-            <button class="pagination-button ${i === currentPage ? 'active' : ''}" data-page="${i}">
+            <button class="pagination-button ${
+                i === currentPage ? 'active' : ''
+            }" data-page="${i}">
                 ${i}
             </button>
         `;
@@ -93,9 +101,9 @@ function removeExercise(exerciseId) {
 const favoriteExercises = JSON.parse(localStorage.getItem('favorites'));
 
 if (favoriteExercises && Array.isArray(favoriteExercises)) {
+    replaceInnerHtmlWithLoader(favorites);
     renderUserListFavorites(favoriteExercises);
 } else {
     favorites.innerHTML =
         "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
 }
-

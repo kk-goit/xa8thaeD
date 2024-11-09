@@ -3,9 +3,14 @@ import {
     getCurrentPage,
 } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
+import {
+    replaceInnerHtmlWithLoader,
+    removeLoaderFromElement,
+} from './loader.js';
 const exercisesForm = document.querySelector('.exercises-form');
 
 // const notFoundTextEl = document.querySelector('.not-found-text');
+const exercises = document.querySelector('.group-list');
 
 let limit = 10;
 let categoryName = 'muscles';
@@ -29,6 +34,8 @@ function handlerSearchFormSubmit(e) {
 
 async function searchListOfExercises() {
     const page = getCurrentPage();
+    replaceInnerHtmlWithLoader(exercises);
+
     const listOfExercises = await yourEnergy.getExercises({
         page,
         limit,
@@ -36,6 +43,7 @@ async function searchListOfExercises() {
         keyword,
     });
     renderUserListExercises(listOfExercises.results);
+    removeLoaderFromElement(exercises);
 }
 
 async function findListOfExercises(catName, catValue) {
@@ -52,6 +60,7 @@ async function findListOfExercises(catName, catValue) {
             break;
     }
     categoryValue = catValue;
+    replaceInnerHtmlWithLoader(exercises);
     try {
         const listOfExercises = await yourEnergy.getExercises({
             page,
@@ -78,12 +87,11 @@ async function findListOfExercises(catName, catValue) {
         clearMarkup();
         console.log(err);
     } finally {
+        removeLoaderFromElement(exercises);
         console.log('Buy');
         // form.reset();
     }
 }
-
-const exercises = document.querySelector('.group-list');
 
 function renderUserListExercises(listExercises) {
     const markup = listExercises

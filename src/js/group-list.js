@@ -4,6 +4,10 @@ import {
     renderPaginationButtons,
     getCurrentPage,
 } from './pagination-exercises.js';
+import {
+    replaceInnerHtmlWithLoader,
+    removeLoaderFromElement,
+} from './loader.js';
 let activeButtonText = ''; // By Ruslan Isupov Add global variable
 
 // const container = document.querySelector('.group-list');
@@ -78,6 +82,7 @@ export const renderGroupListByFilter = async ({
     page = 1,
     limit = 12,
 } = {}) => {
+    replaceInnerHtmlWithLoader(document.querySelector('.group-list'));
     const data = await fetchDataByFilter({ filter, page, limit });
 
     page = getCurrentPage(); // Added  by Ruslan Isupov
