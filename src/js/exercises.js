@@ -221,11 +221,6 @@ function clearMarkup() {
     exercises.innerHTML = '';
 }
 
-window.addEventListener('resize', () => {
-    searchPagination.updateItemsPerPage();
-    exercisesPagination.updateItemsPerPage();
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.exercises-input');
     const clearButton = document.querySelector('.clear-button');
@@ -246,4 +241,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-export { findListOfExercises };
+export { findListOfExercises, renderUserListExercises };
