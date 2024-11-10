@@ -1,3 +1,7 @@
+.header {
+    padding: 20px 0px;
+}
+
 .header-nav {
     display: flex;
     align-items: center;
@@ -16,10 +20,6 @@ header .logo-icon {
     fill: var(--color-main-dark);
 }
 
-.header-container {
-    padding: 20px 0px;
-}
-
 @media only screen and (max-width: 767px) {
     .header-socials.socials {
         display: none;
@@ -31,14 +31,18 @@ header .logo-icon {
 }
 
 @media only screen and (min-width: 768px) {
+    .header {
+        padding: 24px 0;
+    }
+
     .header-nav {
         justify-content: left;
     }
+
     .header-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 24px 0;
     }
 
     header .logo {
@@ -94,7 +98,7 @@ header .logo-icon {
     }
 
     @media only screen and (min-width: 1440px) {
-        .header-container {
+        .header {
             padding: 28px 0;
         }
 
