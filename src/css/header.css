@@ -1,7 +1,5 @@
 .header {
-    padding: 0 20px;
-    margin-top: 20px;
-    margin-bottom: 84px;
+    padding: 20px 0px;
 }
 
 .header-nav {
@@ -34,13 +32,13 @@ header .logo-icon {
 
 @media only screen and (min-width: 768px) {
     .header {
-        padding: 0 32px;
-        margin-top: 24px;
-        margin-bottom: 100px;
+        padding: 24px 0;
     }
+
     .header-nav {
         justify-content: left;
     }
+
     .header-container {
         display: flex;
         justify-content: space-between;
@@ -61,6 +59,7 @@ header .logo-icon {
         background: var(--color-main-dark);
         padding: 8px 34px;
         gap: 10px;
+        margin-right: 80px;
     }
 
     .nav-item.active {
@@ -100,9 +99,7 @@ header .logo-icon {
 
     @media only screen and (min-width: 1440px) {
         .header {
-            padding: 0 32px;
-            margin-top: 28px;
-            margin-bottom: 90px;
+            padding: 28px 0;
         }
 
         .nav-list {

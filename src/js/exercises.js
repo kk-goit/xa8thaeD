@@ -6,19 +6,30 @@ import {
     changeFetchMethod,
 } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
-import showExersiceInfoModal from './exercise-info.js';
+import { showExersiceInfoModal } from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
+import { removeExercise } from './favorites.js';
 
+import {
+    replaceInnerHtmlWithLoader,
+    removeLoaderFromElement,
+} from './loader.js';
 const exercisesForm = document.querySelector('.exercises-form');
 
 // const notFoundTextEl = document.querySelector('.not-found-text');
+const exercises = document.querySelector('.group-list');
 
-let limit = 10;
 let categoryName = 'muscles';
 let categoryValue = '';
 let keyword = '';
 
-exercisesForm.addEventListener('submit', handlerSearchFormSubmit);
+if (exercisesForm) {
+    exercisesForm.addEventListener('submit', handlerSearchFormSubmit);
+}
+
+function getLimit() {
+    return screen.width > 767 ? 10 : 8;
+}
 
 function handlerSearchFormSubmit(e) {
     e.preventDefault();
@@ -35,6 +46,9 @@ function handlerSearchFormSubmit(e) {
 
 async function searchListOfExercises() {
     const page = getCurrentPageSearch();
+    replaceInnerHtmlWithLoader(exercises);
+
+    const limit = getLimit();
     const listOfExercises = await yourEnergy.getExercises({
         page,
         limit,
@@ -50,7 +64,7 @@ async function searchListOfExercises() {
         listOfExercises,
         listOfExercises.totalPages
     );
-    renderUserListExercises(listOfExercises.results);
+    renderUserListExercises(exercises, listOfExercises.results);
     changeFetchMethod('search');
     renderPaginationButtonsSearch(
         listOfExercises.totalPages,
@@ -59,6 +73,7 @@ async function searchListOfExercises() {
         categoryValue,
         keyword
     );
+    removeLoaderFromElement(exercises);
 }
 
 async function findListOfExercises(catName, catValue) {
@@ -76,7 +91,9 @@ async function findListOfExercises(catName, catValue) {
             break;
     }
     categoryValue = catValue;
+    replaceInnerHtmlWithLoader(exercises);
     try {
+        const limit = getLimit();
         const listOfExercises = await yourEnergy.getExercises({
             page,
             limit,
@@ -98,7 +115,7 @@ async function findListOfExercises(catName, catValue) {
             listOfExercises,
             listOfExercises.totalPages
         );
-        renderUserListExercises(listOfExercises.results);
+        renderUserListExercises(exercises, listOfExercises.results);
         changeFetchMethod('exercises');
         renderPaginationButtonsExercises(
             listOfExercises.totalPages,
@@ -110,14 +127,15 @@ async function findListOfExercises(catName, catValue) {
         clearMarkup();
         console.log(err);
     } finally {
+        removeLoaderFromElement(exercises);
         console.log('Buy');
         // form.reset();
     }
 }
 
-const exercises = document.querySelector('.group-list');
+function renderUserListExercises(element, listExercises) {
+    const isFavorites = element.classList.contains('favorites');
 
-function renderUserListExercises(listExercises) {
     const markup = listExercises
         .map(
             exercise => `
@@ -125,12 +143,22 @@ function renderUserListExercises(listExercises) {
   <div class="top-row">
   <div class="rating">
         <p class="badge">WORKOUT</p>
-        <div class="rating-star">
-            <span class='text-star'>${exercise.rating}</span>
-           <svg class="star-icon" width="18" height="18">
-                    <use href="${iconsSVG}#icon-star-18"></use>
+        ${
+            isFavorites
+                ? `
+            <button type="button" class="remove-favorite" data-id=${exercise._id}>
+                <svg width="16" height="16">
+                    <use class="remove-favorite__icon" href="${iconsSVG}#icon-trash"></use>
                 </svg>
-        </div>
+            </button>`
+                : `<div class="rating-star">
+                <span class='text-star'>${exercise.rating}</span>
+                    <svg class="star-icon" width="18" height="18">
+                        <use href="${iconsSVG}#icon-star-18"></use>
+                    </svg>
+            </div>
+        `
+        }
         </div>
         <button class="start">
             Start
@@ -151,31 +179,68 @@ function renderUserListExercises(listExercises) {
             .join(' ')}</p>
     </div>
     <div class="details">
-        <p>Burned calories: <span>${exercise.burnedCalories}</span></p>
-        <p>Body part: <span>${exercise.bodyPart}</span></p>
-        <p>Target: <span>${exercise.target}</span></p>
+        <p>Burned calories: <span class="details-calories">${
+            exercise.burnedCalories
+        } / ${exercise.time} min</span></p>
+        <p>Body part: <span class="details-calories">${
+            exercise.bodyPart
+        }</span></p>
+        <p>Target: <span class="details-target">${exercise.target}</span></p>
     </div>
 </li>`
         )
         .join('');
 
-    exercises.innerHTML = markup;
+    element.innerHTML = markup;
 
     // Add event listeners to the exercise start button
     const exerciseCards = document.querySelectorAll('.exercise-card .start');
     exerciseCards.forEach(card => {
         card.addEventListener('click', handleExerciseStart);
     });
+
+    if (isFavorites) {
+        const removeFavoriteButtons =
+            document.querySelectorAll('.remove-favorite');
+        removeFavoriteButtons.forEach(button => {
+            button.addEventListener('click', handleRemoveFavorite);
+        });
+    }
 }
-    
+
 function handleExerciseStart(e) {
     const exerciseId = e.target.closest('.exercise-card').dataset.id;
     showExersiceInfoModal(exerciseId);
 }
 
+function handleRemoveFavorite(e) {
+    const exerciseCard = e.target.closest('.exercise-card');
+    const exerciseId = exerciseCard.dataset.id;
+    removeExercise(exerciseId);
+}
 
 function clearMarkup() {
     exercises.innerHTML = '';
 }
 
-export { findListOfExercises };
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('.exercises-input');
+    const clearButton = document.querySelector('.clear-button');
+    clearButton.style.display = 'none';
+
+    searchInput.addEventListener('input', () => {
+        if (searchInput.value.trim() !== '') {
+            clearButton.style.display = 'flex';
+        } else {
+            clearButton.style.display = 'none';
+        }
+    });
+
+    clearButton.addEventListener('click', () => {
+        searchInput.value = '';
+        clearButton.style.display = 'none';
+        searchInput.focus();
+    });
+});
+
+export { findListOfExercises, renderUserListExercises };

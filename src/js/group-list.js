@@ -5,6 +5,10 @@ import {
     renderPaginationButtonsCategory,
     getCurrentPageCategory,
 } from './pagination-exercises.js';
+import {
+    replaceInnerHtmlWithLoader,
+    removeLoaderFromElement,
+} from './loader.js';
 let activeButtonText = ''; // By Ruslan Isupov Add global variable
 
 // const container = document.querySelector('.group-list');
@@ -74,11 +78,13 @@ const fetchDataByFilter = async params => {
     return await api.getExercisesByFilter(params);
 };
 
-export const renderGroupListByFilter = async ({
+
+export const renderGroupListByFilter = async (
     filter = 'Muscles',
     page = 1,
-    limit = 12,
-} = {}) => {
+    limit = screen.width > 767? 12 : 9
+) => {
+    filter = filter.trim();
     page = getCurrentPageCategory(); // Added  by Ruslan Isupov
     activeButtonText = filter.toLowerCase(); // Take filter and save in global variable "activeButtonText"
     // console.log('renderGroupListByFilter before', filter);
@@ -90,10 +96,11 @@ export const renderGroupListByFilter = async ({
     // }
     // activeButtonText = filter.toLowerCase();
     if (activeButtonText === 'body parts') {
-         activeButtonText = 'bodypart';
+        activeButtonText = 'bodypart';
     }
     // console.log('renderGroupListByFilter before', filter);
     // console.log('renderGroupListByFilter before', activeButtonText);
+    replaceInnerHtmlWithLoader(document.querySelector('.group-list'));
     const data = await fetchDataByFilter({ filter, page, limit });
 
     renderGroupList(data.results);
@@ -109,7 +116,7 @@ export const renderGroupListByFilter = async ({
     renderPaginationButtonsCategory(
         data.totalPages,
         renderGroupListByFilter,
-        activeButtonText
+        filter
     );
 };
 

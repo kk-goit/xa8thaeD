@@ -34,8 +34,22 @@
     border: none;
 }
 
+@media screen and (min-width: 768px) {
+    .close-modal-btn {
+        width: 28px;
+        height: 28px;
+        top: 14px;
+        right: 14px;
+    }
+
+    .close-modal-btn svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
 .modal-close-icon {
-    stroke: var(--color-popup-txt);
+    stroke: var(--color-popup-main);
 }
 
 .modal {
@@ -48,7 +62,13 @@
     min-height: 200px;
     background: var(--color-popup-bg);
     border-radius: 20px;
+    max-height: 90vh;
     opacity: 0;
+    overflow-y: auto;
+}
+
+.modal::-webkit-scrollbar {
+    display: none;
 }
 
 .backdrop.is-open .modal {
