@@ -43,12 +43,13 @@ class Modal {
 
         if (this.parentModal) {
             this.parentModal.backdrop.classList.remove('is-open');
+        } else {
+            // Avoid scrollbar jumping  when modal is opened
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
         }
         
-        // Avoid scrollbar jumping  when modal is opened
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-        
+
         document.body.classList.add('modal-no-scroll');
         this.backdrop.classList.add('is-open');
     }
@@ -76,13 +77,13 @@ class Modal {
         
         if (this.parentModal) {
             this.parentModal.backdrop.classList.add('is-open');
+        } else {
+            document.body.classList.remove('modal-no-scroll');
+            document.body.style.paddingRight = '';
         }
         
         
         this.backdrop.remove();
-
-        document.body.classList.remove('modal-no-scroll');
-        document.body.style.paddingRight = '';
     }
 }
 
