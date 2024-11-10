@@ -34,8 +34,22 @@
     border: none;
 }
 
+@media screen and (min-width: 768px) {
+    .close-modal-btn {
+        width: 28px;
+        height: 28px;
+        top: 14px;
+        right: 14px;
+    }
+
+    .close-modal-btn svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
 .modal-close-icon {
-    stroke: var(--color-popup-txt);
+    stroke: var(--color-popup-main);
 }
 
 .modal {

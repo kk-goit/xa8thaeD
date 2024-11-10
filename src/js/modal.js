@@ -33,9 +33,7 @@ class Modal {
         this.backdrop.addEventListener('click', this.handleClose);
 
         // Add event listener to close modal when pressing the ESC key
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') this.closeModal(event);
-        });
+        document.addEventListener('keydown', this.handleClose);
 
         document.body.appendChild(this.backdrop);
     }
@@ -50,11 +48,21 @@ class Modal {
         this.backdrop.classList.add('is-open');
     }
 
+    toggleModalVisibility() {
+        this.backdrop.classList.toggle('is-open');
+    }
+
     closeModal(event) {
-        // Prevent closing modal when clicking on the content
-        const el = event.target;
-        if (el.closest('.modal-content')) {
-            return;
+
+        if (event) {
+            if (event.type === 'keydown' && event.key !== 'Escape') {
+                return;
+            }
+
+            const el = event.target;
+            if (el.closest('.modal-content')) {
+                return;
+            }
         }
 
         // Remove event listeners
