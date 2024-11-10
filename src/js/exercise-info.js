@@ -1,6 +1,8 @@
 import api from './api/your-energy-api';
 import modal from './modal';
 import iconsSVG from '../img/icons.svg';
+import setTime from '../js/timer-info.js';
+
 
 function showExersiceInfoModal(exerciseId) {
     fetchExerciseInfoById(exerciseId).then(exerciseInfo => {
@@ -9,21 +11,59 @@ function showExersiceInfoModal(exerciseId) {
 
         const addToFavoriteBtn = exerciseModal.modal.querySelector('.add-to-favorite-btn');
         const giveRatingBtn = exerciseModal.modal.querySelector('.give-rating-btn');
+        const startBtn = exerciseModal.modal.querySelector('.start-btn');
+        const timer = exerciseModal.modal.querySelector('.timer');
+
+
+        let startTime;
+        let stopTime;
+        let intervalId;
 
         addToFavoriteBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isFavorite(exerciseId)) {
                 removeFromFavorites(exerciseId);
-            } else {
+            }
+            else {
                 addToFavorites(exerciseId);
             }
             // Update the button text and icon
             addToFavoriteBtn.innerHTML = getAddedToFavoritesBtnHTML(exerciseId);
         });
-        
+
         giveRatingBtn.addEventListener('click', () => {
             // Give a rating to the exercise
             console.log('Give a rating');
+        });
+
+        startBtn.addEventListener('click', (e) => {
+            if (startBtn.classList.contains('start-btn')) {
+                startBtn.classList.remove('start-btn');
+                startBtn.classList.add('stop-btn');
+                startBtn.textContent = 'Stop';
+                startTime = Date.now();
+                intervalId = setInterval(() => {
+                    const currentTime = Date.now();
+                    timer.textContent = formatTime(Math.floor((currentTime - startTime) / 1000));
+                }, 1000);
+            }
+            else {
+                startBtn.classList.remove('stop-btn');
+                startBtn.classList.add('start-btn');
+                startBtn.textContent = 'Start';
+                stopTime = Date.now();
+
+                clearInterval(intervalId);
+                const timeDiff = stopTime - startTime;
+                const seconds = Math.floor(timeDiff / 1000);
+
+                const savedTimer = Number(localStorage.getItem('timer')) || 0;
+                localStorage.setItem('timer', savedTimer + seconds);
+                const savedCalories = Number(localStorage.getItem('burntCalories')) || 0;
+                localStorage.setItem('burntCalories', savedCalories + seconds * (exerciseInfo.burnedCalories || 0));
+                localStorage.setItem('lastUpdate', new Date().toDateString());
+                setTime()
+            }
         });
 
         exerciseModal.openModal();
@@ -44,11 +84,19 @@ function buildExerciseInfoHTML(exerciseInfo) {
                 </ul>
                 <p class="exercise-info__description">${exerciseInfo.description}</p>
             </div>
-            <div class="exercise-info__actions">
-                <button class="exercise-info__button add-to-favorite-btn" data-id="${exerciseInfo._id}">
-                    ${getAddedToFavoritesBtnHTML(exerciseInfo._id)}
-                </button>
-                <button class="exercise-info__button give-rating-btn">Give a rating</button>
+
+            <div class="exercise-btn-block">
+                <div class="timer-block">
+                    <button class="exercise-info__button time-btn start-btn">START</button>
+                    <p class="timer"></p>
+                </div>
+
+                <div class="exercise-info__actions">
+                    <button class="exercise-info__button add-to-favorite-btn" data-id="${exerciseInfo._id}">
+                        ${getAddedToFavoritesBtnHTML(exerciseInfo._id)}
+                    </button>
+                    <button class="exercise-info__button give-rating-btn">Give a rating</button>
+                </div>
             </div>
         </div>
     `;
@@ -67,7 +115,7 @@ function buildExerciseInfoParamsHTML(exerciseInfo) {
 
     if (exerciseInfo.equipment) {
         params.push(
-            `<li><span>Equipment</span> ${exerciseInfo.equipment}</li>`
+            `<li><span>Equipment</span> ${exerciseInfo.equipment}</li>`,
         );
     }
 
@@ -77,7 +125,7 @@ function buildExerciseInfoParamsHTML(exerciseInfo) {
 
     if (exerciseInfo.burnedCalories) {
         params.push(
-            `<li><span>Burned Calories</span> ${exerciseInfo.burnedCalories}</li>`
+            `<li><span>Burned Calories</span> ${exerciseInfo.burnedCalories}</li>`,
         );
     }
 
@@ -101,7 +149,7 @@ function getRatingStarsHTML(rating) {
         stars.push(
             `<svg width="18" height="18">
                 <use class="rating-star__full" href="${iconsSVG}#icon-star-18"></use>
-            </svg>`
+            </svg>`,
         );
     }
 
@@ -117,7 +165,7 @@ function getRatingStarsHTML(rating) {
                     </linearGradient>
                 </defs>
                 <use class="rating-star" href="${iconsSVG}#icon-star-18" fill="url('#myGradient')"></use>
-            </svg>`
+            </svg>`,
         );
     }
 
@@ -126,7 +174,7 @@ function getRatingStarsHTML(rating) {
         stars.push(
             `<svg width="18" height="18">
                 <use class="rating-star__empty" href="${iconsSVG}#icon-star-18"></use>
-            </svg>`
+            </svg>`,
         );
     }
 
@@ -139,7 +187,8 @@ function addToFavorites(exerciseId) {
     if (!favorites) {
         // Add exercise to favorites
         localStorage.setItem('favorites', JSON.stringify([exerciseId]));
-    } else {
+    }
+    else {
         // Parse favorites
         const favoritesArr = JSON.parse(favorites);
 
@@ -181,7 +230,7 @@ function removeFromFavorites(exerciseId) {
 function isFavorite(exerciseId) {
     // Get data from local storage
     const favorites = localStorage.getItem('favorites');
-   
+
     if (!favorites) {
         return false;
     }
@@ -204,6 +253,14 @@ function getAddedToFavoritesBtnHTML(exerciseId) {
 
 async function fetchExerciseInfoById(id) {
     return await api.getExerciseById(id);
+}
+
+
+function formatTime(totalSeconds) {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    // padStart добавляет ведущий ноль если число меньше 10
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
 export { showExersiceInfoModal, removeFromFavorites };
