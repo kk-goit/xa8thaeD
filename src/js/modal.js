@@ -1,7 +1,8 @@
 import iconsSVG from '../img/icons.svg';
 
 class Modal {
-    constructor(content) {
+    constructor(content, parentModal = null) {
+        this.parentModal = parentModal;
         this.backdrop = document.createElement('div');
         this.backdrop.classList.add('backdrop');
 
@@ -33,14 +34,16 @@ class Modal {
         this.backdrop.addEventListener('click', this.handleClose);
 
         // Add event listener to close modal when pressing the ESC key
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') this.closeModal(event);
-        });
+        document.addEventListener('keydown', this.handleClose);
 
         document.body.appendChild(this.backdrop);
     }
 
     openModal() {
+
+        if (this.parentModal) {
+            this.parentModal.backdrop.classList.remove('is-open');
+        }
         
         // Avoid scrollbar jumping  when modal is opened
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -50,20 +53,32 @@ class Modal {
         this.backdrop.classList.add('is-open');
     }
 
+    toggleModalVisibility() {
+        this.backdrop.classList.toggle('is-open');
+    }
+
     closeModal(event) {
-        // Prevent closing modal when clicking on the content
-        const el = event.target;
-        if (el.closest('.modal-content')) {
+
+        if (
+            !event ||
+            (event.type === 'keydown' && event.key !== 'Escape') ||
+            !this.backdrop.classList.contains('is-open') ||
+            event.target.closest('.modal-content')
+        ) {
             return;
         }
 
         // Remove event listeners
-        this.closeButton.removeEventListener('click', this.handleClose);
-        this.backdrop.removeEventListener('click', this.handleClose);
         document.removeEventListener('keydown', this.handleClose);
 
         // Remove modal from the DOM
         this.backdrop.classList.remove('is-open');
+        
+        if (this.parentModal) {
+            this.parentModal.backdrop.classList.add('is-open');
+        }
+        
+        
         this.backdrop.remove();
 
         document.body.classList.remove('modal-no-scroll');
