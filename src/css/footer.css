@@ -2,18 +2,7 @@ footer {
     width: 100%;
     background-color: var(--color-main-dark);
     margin-top: auto;
-}
-
-@media only screen and (min-width: 768px) {
-    footer.container {
-        margin-top: 100px;
-    }
-}
-
-@media only screen and (min-width: 1440px) {
-    footer.container {
-        margin-top: 132px;
-    }
+    padding: 40px 0px 10px;
 }
 
 .footer-container {
@@ -21,10 +10,7 @@ footer {
     flex-direction: column;
     justify-content: flex-start;
     align-items: start;
-    background-color: var(--color-main-dark);
     color: var(--color-popup-main);
-    padding: 40px 20px 10px 20px;
-    margin-top: 80px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -35,8 +21,8 @@ footer {
 }
 
 @media only screen and (min-width: 1440px) {
-    .footer-container {
-        padding: 64px 32px 16px 32px;
+    .footer {
+        padding: 64px 0 16px;
     }
 }
 
@@ -64,8 +50,10 @@ footer {
     }
 }
 
-.footer-logo-socials {
-    margin-bottom: 40px;
+@media only screen and (max-width: 767px) {
+    .footer-logo-socials {
+        margin-bottom: 40px;
+    }
 }
 
 @media only screen and (min-width: 1440px) {
@@ -311,7 +299,7 @@ footer {
 
 @media only screen and (min-width: 768px) {
     .footer-rights {
-        margin-right: 100px;
+        margin-right: 78px;
     }
 }
 
