@@ -8,13 +8,10 @@ function showExersiceInfoModal(exerciseId) {
         const content = buildExerciseInfoHTML(exerciseInfo);
         const exerciseModal = new modal(content);
 
-        const addToFavoriteBtn = exerciseModal.modal.querySelector(
-            '.add-to-favorite-btn'
-        );
-        const giveRatingBtn =
-            exerciseModal.modal.querySelector('.give-rating-btn');
+        const addToFavoriteBtn = exerciseModal.modal.querySelector('.add-to-favorite-btn');
+        const giveRatingBtn = exerciseModal.modal.querySelector('.give-rating-btn');
 
-        addToFavoriteBtn.addEventListener('click', e => {
+        addToFavoriteBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isFavorite(exerciseId)) {
                 removeFromFavorites(exerciseId);
@@ -24,8 +21,7 @@ function showExersiceInfoModal(exerciseId) {
             // Update the button text and icon
             addToFavoriteBtn.innerHTML = getAddedToFavoritesBtnHTML(exerciseId);
         });
-
-        giveRatingBtn.addEventListener('click', e => {
+        giveRatingBtn.addEventListener('click', (e) => {
             exerciseModal.toggleModalVisibility();
             const ratingForm = new RatingForm(exerciseId, exerciseModal);
         });
@@ -37,9 +33,7 @@ function showExersiceInfoModal(exerciseId) {
 function buildExerciseInfoHTML(exerciseInfo) {
     return `
         <div class="exercise-info__wrapper">
-            <img class="exercise-info__img" src="${exerciseInfo.gifUrl}" alt="${
-        exerciseInfo.name
-    }" width="270" height="259">
+            <img class="exercise-info__img" src="${exerciseInfo.gifUrl}" alt="${exerciseInfo.name}" width="270" height="259">
             <div class="exercise-info__content">
                 <h3 class="exercise-info__title">${exerciseInfo.name}</h3>
                 <div class="exercise-info__rating">
@@ -48,14 +42,10 @@ function buildExerciseInfoHTML(exerciseInfo) {
                 <ul class="exercise-info__params">
                     ${buildExerciseInfoParamsHTML(exerciseInfo)}
                 </ul>
-                <p class="exercise-info__description">${
-                    exerciseInfo.description
-                }</p>
+               <p class="exercise-info__description">${exerciseInfo.description}</p>
             </div>
             <div class="exercise-info__actions">
-                <button class="exercise-info__button add-to-favorite-btn" data-id="${
-                    exerciseInfo._id
-                }">
+                <button class="exercise-info__button add-to-favorite-btn" data-id="${exerciseInfo._id}">
                     ${getAddedToFavoritesBtnHTML(exerciseInfo._id)}
                 </button>
                 <button class="exercise-info__button give-rating-btn">Give a rating</button>
@@ -68,21 +58,15 @@ function buildExerciseInfoParamsHTML(exerciseInfo) {
     const params = [];
 
     if (exerciseInfo.target) {
-        params.push(
-            `<li><span>Target</span><span class="details-target">${exerciseInfo.target}</span></li>`
-        );
+        params.push(`<li><span>Target</span><span class="details-target">${exerciseInfo.target}</span></li>`);
     }
 
     if (exerciseInfo.bodyPart) {
-        params.push(
-            `<li><span>Body Part</span><span class="details-body-part">${exerciseInfo.bodyPart}</span></li>`
-        );
+        params.push(`<li><span>Body Part</span><span class="details-body-part">${exerciseInfo.bodyPart}</span></li>`);
     }
 
     if (exerciseInfo.equipment) {
-        params.push(
-            `<li><span>Equipment</span> ${exerciseInfo.equipment}</li>`
-        );
+        params.push(`<li><span>Equipment</span> ${exerciseInfo.equipment}</li>`);
     }
 
     if (exerciseInfo.popularity) {
@@ -90,9 +74,7 @@ function buildExerciseInfoParamsHTML(exerciseInfo) {
     }
 
     if (exerciseInfo.burnedCalories) {
-        params.push(
-            `<li><span>Burned Calories</span><span class="details-calories">${exerciseInfo.burnedCalories}</span></li>`
-        );
+        params.push(`<li><span>Burned Calories</span><span class="details-calories">${exerciseInfo.burnedCalories}</span></li>`);
     }
 
     return params.join('');
@@ -144,9 +126,7 @@ function getRatingStarsHTML(rating) {
         );
     }
 
-    return `${ratingText}<div class="exercise-info__rating-stars">${stars.join(
-        ''
-    )}</div>`;
+    return `${ratingText}<div class="exercise-info__rating-stars">${stars.join('')}</div>`;
 }
 
 function addToFavorites(exerciseId) {
@@ -187,9 +167,7 @@ function removeFromFavorites(exerciseId) {
     // Remove exercise from favorites list if it's open
     const favoritesList = document.querySelector('.favorites');
     if (favoritesList) {
-        const exerciseCard = favoritesList.querySelector(
-            `.exercise-card[data-id="${exerciseId}"]`
-        );
+        const exerciseCard = favoritesList.querySelector(`.exercise-card[data-id="${exerciseId}"]`);
         if (exerciseCard) {
             exerciseCard.remove();
         }
@@ -199,7 +177,6 @@ function removeFromFavorites(exerciseId) {
 function isFavorite(exerciseId) {
     // Get data from local storage
     const favorites = localStorage.getItem('favorites');
-
     if (!favorites) {
         return false;
     }
@@ -215,9 +192,7 @@ function getAddedToFavoritesBtnHTML(exerciseId) {
     return `
         ${isFav ? 'Remove from favorites' : 'Add to favorites'}
         <svg width="20" height="20">
-            <use class="modal-close-icon" href="${iconsSVG}#${
-        isFav ? 'icon-trash' : 'icon-heart'
-    }"></use>
+            <use class="modal-close-icon" href="${iconsSVG}#${isFav ? 'icon-trash' : 'icon-heart'}"></use>
         </svg>
     `;
 }
