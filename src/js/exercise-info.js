@@ -39,7 +39,7 @@ function showExersiceInfoModal(exerciseId) {
             if (startBtn.classList.contains('start-btn')) {
                 startBtn.classList.remove('start-btn');
                 startBtn.classList.add('stop-btn');
-                startBtn.textContent = 'Stop';
+                startBtn.textContent = 'STOP';
                 startTime = Date.now();
                 intervalId = setInterval(() => {
                     const currentTime = Date.now();
@@ -49,7 +49,7 @@ function showExersiceInfoModal(exerciseId) {
             else {
                 startBtn.classList.remove('stop-btn');
                 startBtn.classList.add('start-btn');
-                startBtn.textContent = 'Start';
+                startBtn.textContent = 'START';
                 stopTime = Date.now();
 
                 clearInterval(intervalId);
