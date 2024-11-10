@@ -37,6 +37,7 @@
 
     .exercises-group-list {
         flex-direction: row;
+        justify-content: space-between;
     }
 }
 
@@ -390,86 +391,6 @@
 
 .page-button:not(.active):hover {
     color: var(--color-main-dark);
-}
-
-@media screen and (min-width: 768px) {
-    .exercise-info__actions {
-        flex: 1;
-        flex-direction: row;
-        justify-content: end;
-        gap: 7px;
-    }
-}
-
-.exercise-info__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    height: 48px;
-    border: none;
-    cursor: pointer;
-    border-radius: 30px;
-    transition: var(--transition);
-}
-
-.add-to-favorite-btn {
-    padding: 0 24px;
-    color: var(--color-main-dark);
-}
-
-.add-to-favorite-btn:hover {
-    background-color: transparent;
-    color: var(--color-popup-main);
-    outline: 1px solid var(--color-popup-main);
-}
-
-.add-to-favorite-btn:hover svg {
-    fill: var(--color-popup-main);
-}
-
-/* Rating styles */
-.exercise-info__rating {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    margin-bottom: 20px;
-}
-
-.exercise-info__rating-stars {
-    display: flex;
-    gap: 2px;
-}
-
-.exercise-info__rating-stars svg {
-    padding: 2px;
-}
-
-.exercise-info__rating-text {
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--color-popup-main);
-    font-weight: 400;
-}
-
-.give-rating-btn {
-    padding: 0 22px;
-    outline: 1px solid var(--color-popup-main);
-    background: transparent;
-    color: var(--color-popup-main);
-}
-
-.give-rating-btn:hover {
-    background-color: var(--color-popup-main);
-    color: var(--color-main-dark);
-}
-
-.rating-star__empty {
-    fill: var(--color-stars-empty);
-}
-
-.rating-star__full {
-    fill: var(--color-stars-full);
 }
 
 .page-button:disabled {

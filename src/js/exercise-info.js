@@ -1,5 +1,6 @@
 import api from './api/your-energy-api';
 import modal from './modal';
+import RatingForm from './rating-form';
 import iconsSVG from '../img/icons.svg';
 
 function showExersiceInfoModal(exerciseId) {
@@ -24,9 +25,9 @@ function showExersiceInfoModal(exerciseId) {
             addToFavoriteBtn.innerHTML = getAddedToFavoritesBtnHTML(exerciseId);
         });
 
-        giveRatingBtn.addEventListener('click', () => {
-            // Give a rating to the exercise
-            console.log('Give a rating');
+        giveRatingBtn.addEventListener('click', e => {
+            exerciseModal.toggleModalVisibility();
+            const ratingForm = new RatingForm(exerciseId, exerciseModal);
         });
 
         exerciseModal.openModal();
