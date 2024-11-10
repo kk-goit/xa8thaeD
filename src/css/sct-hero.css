@@ -100,8 +100,8 @@
         display: none;
     }
 
-    .hero-container {
-        padding-top: 80px;
+    .hero {
+        padding-top: 60px;
         padding-bottom: 40px;
     }
 }
@@ -116,8 +116,8 @@
         display: none;
     }
 
-    .hero-container {
-        padding-top: 100px;
+    .hero {
+        padding-top: 76px;
         padding-bottom: 29px;
     }
 
@@ -189,8 +189,8 @@
         max-width: 60%;
     }
 
-    .hero-container {
-        padding-top: 96px;
+    .hero {
+        padding-top: 68px;
         padding-bottom: 64px;
     }
 
