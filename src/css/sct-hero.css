@@ -1,10 +1,5 @@
 /* Глобальні стилі */
 
-.hero.container {
-    padding-top: 96px;
-    padding-bottom: 64px;
-}
-
 .tags span {
     padding: 5px 10px;
     display: block;
@@ -13,14 +8,10 @@
     border: 1px solid #242424;
 }
 
-
-
 .mobile-tags,
 .desktop-tags {
     display: none;
 }
-
-
 
 .hero-image img {
     width: 100%;
@@ -41,17 +32,12 @@
     .desktop-tags {
         display: none;
     }
-    
-        .hero-first-part {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 32px;
-        }
-    
-    .hero-content {
-        position: relative;
-        padding: 20px;
-        text-align: left;
+
+    .hero-first-part {
+        display: flex;
+
+        align-items: left;
+        justify-content: center;
     }
 
     .hero-content h2 {
@@ -105,7 +91,6 @@
         align-items: center;
     }
     .hero-image img {
-       
         color: #ffffff;
         border-radius: 60px;
         object-fit: cover;
@@ -113,6 +98,11 @@
 
     .small-image {
         display: none;
+    }
+
+    .hero-container {
+        padding-top: 80px;
+        padding-bottom: 40px;
     }
 }
 
@@ -124,6 +114,11 @@
 
     .small-image {
         display: none;
+    }
+
+    .hero-container {
+        padding-top: 100px;
+        padding-bottom: 29px;
     }
 
     .hero-content {
@@ -182,7 +177,6 @@
     }
 
     .hero-image img {
-        
         color: #ffffff;
         border-radius: 60px;
         object-fit: cover;
@@ -191,18 +185,20 @@
 
 /* DESKTOP  */
 @media screen and (min-width: 1441px) {
-    
     .text-content {
         max-width: 60%;
     }
 
+    .hero-container {
+        padding-top: 96px;
+        padding-bottom: 64px;
+    }
 
-        .hero-first-part {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 32px;
-        }
-
+    .hero-first-part {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 32px;
+    }
 
     .right-content {
         display: flex;
@@ -328,3 +324,4 @@
     display: flex;
     align-items: center;
 }
+
