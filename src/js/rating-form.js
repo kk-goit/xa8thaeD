@@ -1,6 +1,7 @@
 import Modal from './modal';
 import toastManager from './api/toast-manager.js';
 import yourEnergy from './api/your-energy-api.js';
+import { showExersiceInfoModal } from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
 
 class RatingForm {
@@ -137,7 +138,8 @@ class RatingForm {
                 toastManager.success('Success:', 'Rating added successfully');
                 this.modal.backdrop.classList.remove('is-open');
                 if (this.parentModal) {
-                    this.parentModal.backdrop.classList.add('is-open');
+                    this.parentModal.closeModal();
+                    showExersiceInfoModal(id);
                 }
                 this.modal.closeModal();
             } else {
