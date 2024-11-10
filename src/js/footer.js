@@ -11,12 +11,13 @@ form.addEventListener('submit', async (event) => {
     if (emailPattern.test(email)) {
         try {
             const response = await yourEnergy.orderSubscription(email);
-            toastManager.success('Success', 'Subscription successful!');
+            if (typeof response === 'string') {
+                toastManager.error('Error', response);
+            } else {
+                toastManager.success('Success', 'Subscription successful!');
+            }
         } catch (error) {
-            toastManager.error(
-                'Error',
-                'Subscription failed: ' + error,
-            );
+            toastManager.error('Error', 'Subscription failed: ' + error);
         }
         form.elements.email.value = '';
     } else {
