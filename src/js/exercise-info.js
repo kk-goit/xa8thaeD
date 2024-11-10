@@ -30,7 +30,6 @@ function showExersiceInfoModal(exerciseId) {
             // Update the button text and icon
             addToFavoriteBtn.innerHTML = getAddedToFavoritesBtnHTML(exerciseId);
         });
-
         giveRatingBtn.addEventListener('click', (e) => {
             exerciseModal.toggleModalVisibility();
             const ratingForm = new RatingForm(exerciseId, exerciseModal);
@@ -82,7 +81,7 @@ function buildExerciseInfoHTML(exerciseInfo) {
                 <ul class="exercise-info__params">
                     ${buildExerciseInfoParamsHTML(exerciseInfo)}
                 </ul>
-                <p class="exercise-info__description">${exerciseInfo.description}</p>
+               <p class="exercise-info__description">${exerciseInfo.description}</p>
             </div>
 
             <div class="exercise-btn-block">
@@ -106,17 +105,15 @@ function buildExerciseInfoParamsHTML(exerciseInfo) {
     const params = [];
 
     if (exerciseInfo.target) {
-        params.push(`<li><span>Target</span> ${exerciseInfo.target}</li>`);
+        params.push(`<li><span>Target</span><span class="details-target">${exerciseInfo.target}</span></li>`);
     }
 
     if (exerciseInfo.bodyPart) {
-        params.push(`<li><span>Body Part</span> ${exerciseInfo.bodyPart}</li>`);
+        params.push(`<li><span>Body Part</span><span class="details-body-part">${exerciseInfo.bodyPart}</span></li>`);
     }
 
     if (exerciseInfo.equipment) {
-        params.push(
-            `<li><span>Equipment</span> ${exerciseInfo.equipment}</li>`
-        );
+        params.push(`<li><span>Equipment</span> ${exerciseInfo.equipment}</li>`);
     }
 
     if (exerciseInfo.popularity) {
@@ -124,9 +121,7 @@ function buildExerciseInfoParamsHTML(exerciseInfo) {
     }
 
     if (exerciseInfo.burnedCalories) {
-        params.push(
-            `<li><span>Burned Calories</span> ${exerciseInfo.burnedCalories}</li>`
-        );
+        params.push(`<li><span>Burned Calories</span><span class="details-calories">${exerciseInfo.burnedCalories}</span></li>`);
     }
 
     return params.join('');
