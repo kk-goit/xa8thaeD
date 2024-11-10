@@ -1,7 +1,8 @@
 import iconsSVG from '../img/icons.svg';
 
 class Modal {
-    constructor(content) {
+    constructor(content, parentModal = null) {
+        this.parentModal = parentModal;
         this.backdrop = document.createElement('div');
         this.backdrop.classList.add('backdrop');
 
@@ -39,6 +40,10 @@ class Modal {
     }
 
     openModal() {
+
+        if (this.parentModal) {
+            this.parentModal.backdrop.classList.remove('is-open');
+        }
         
         // Avoid scrollbar jumping  when modal is opened
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -54,24 +59,26 @@ class Modal {
 
     closeModal(event) {
 
-        if (event) {
-            if (event.type === 'keydown' && event.key !== 'Escape') {
-                return;
-            }
-
-            const el = event.target;
-            if (el.closest('.modal-content')) {
-                return;
-            }
+        if (
+            !event ||
+            (event.type === 'keydown' && event.key !== 'Escape') ||
+            !this.backdrop.classList.contains('is-open') ||
+            event.target.closest('.modal-content')
+        ) {
+            return;
         }
 
         // Remove event listeners
-        this.closeButton.removeEventListener('click', this.handleClose);
-        this.backdrop.removeEventListener('click', this.handleClose);
         document.removeEventListener('keydown', this.handleClose);
 
         // Remove modal from the DOM
         this.backdrop.classList.remove('is-open');
+        
+        if (this.parentModal) {
+            this.parentModal.backdrop.classList.add('is-open');
+        }
+        
+        
         this.backdrop.remove();
 
         document.body.classList.remove('modal-no-scroll');

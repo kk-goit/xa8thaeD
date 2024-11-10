@@ -8,19 +8,14 @@ class RatingForm {
         this.exerciseId = exerciseId;
         this.parentModal = parentModal;
         const modalContent = this.getFormHTML(exerciseId);
-        this.modal = new Modal(modalContent.outerHTML);
+        this.modal = new Modal(modalContent.outerHTML, parentModal);
         this.modal.openModal();
 
         // Add event listener to the form
         const form = this.modal.modal.querySelector('.rating-form');
         const rating = form.querySelector('.rating-form__rating');
-        const ratingFormCloseBtn = this.modal.closeButton;
-        const ratingFormBackDrop = this.modal.backdrop;
         form.addEventListener('submit', async (event) => this.handleSubmit(event));
         rating.addEventListener('click', (event) => this.handleRatingClick(event));
-        ratingFormCloseBtn.addEventListener('click', () => this.parentModal.toggleModalVisibility());
-        this.handleEsc = this.handleEscapeKey.bind(this);
-        document.addEventListener('keydown', this.handleEsc);
     }
 
     getFormHTML(exerciseId) {
@@ -140,10 +135,11 @@ class RatingForm {
     
             if (response instanceof Object) {
                 toastManager.success('Success:', 'Rating added successfully');
-                this.modal.closeModal();
+                this.modal.backdrop.classList.remove('is-open');
                 if (this.parentModal) {
-                    this.parentModal.toggleModalVisibility();
+                    this.parentModal.backdrop.classList.add('is-open');
                 }
+                this.modal.closeModal();
             } else {
                 toastManager.error('Error:', response);
             }
