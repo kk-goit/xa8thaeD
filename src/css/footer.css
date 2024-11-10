@@ -216,21 +216,40 @@ footer {
 
 .footer-input {
     width: 100%;
-    height: 42px;
     background-color: transparent;
     color: var(--color-popup-main);
     border: 1px solid #f4f4f4;
     border-radius: 30px;
-    padding: 12px 14px;
+    padding: 11px 14px;
     text-align: left;
     transition: var(--transition);
+}
+
+@media screen and (min-width: 768px) {
+    .footer-input {
+
+    }
 }
 
 .footer-input::placeholder {
     font-weight: 400;
     font-size: 14px;
-    line-height: 129%;
+    line-height: 1.29;
     color: var(--color-quote-text);
+}
+
+@media screen and (min-width: 768px) {
+    .footer-input::placeholder {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .footer-input {
+        font-size: 16px;
+        line-height: 1.5;
+    }
 }
 
 .footer-input:focus::placeholder {
@@ -238,20 +257,31 @@ footer {
 }
 
 .footer-button {
+    padding: 12px;
     width: 100%;
-    height: 42px;
     background-color: var(--color-main-light);
     color: var(--color-main-dark);
     border: none;
     cursor: pointer;
     border-radius: 30px;
     transition: var(--transition);
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.29;
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-button {
+        font-size: 16px;
+        line-height: 1.5;
+    }
 }
 
 .footer-button:hover {
     background-color: var(--color-main-dark);
     color: var(--color-main-light);
-    border: 1px solid var(--color-main-light);
+    outline: 1px solid var(--color-main-light);
     border-radius: 30px;
 }
 

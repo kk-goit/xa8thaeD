@@ -1,5 +1,6 @@
 import api from './api/your-energy-api';
 import modal from './modal';
+import RatingForm from './rating-form';
 import iconsSVG from '../img/icons.svg';
 import setTime from '../js/timer-info.js';
 
@@ -23,17 +24,16 @@ function showExersiceInfoModal(exerciseId) {
             e.stopPropagation();
             if (isFavorite(exerciseId)) {
                 removeFromFavorites(exerciseId);
-            }
-            else {
+            } else {
                 addToFavorites(exerciseId);
             }
             // Update the button text and icon
             addToFavoriteBtn.innerHTML = getAddedToFavoritesBtnHTML(exerciseId);
         });
 
-        giveRatingBtn.addEventListener('click', () => {
-            // Give a rating to the exercise
-            console.log('Give a rating');
+        giveRatingBtn.addEventListener('click', (e) => {
+            exerciseModal.toggleModalVisibility();
+            const ratingForm = new RatingForm(exerciseId, exerciseModal);
         });
 
         startBtn.addEventListener('click', (e) => {
@@ -115,7 +115,7 @@ function buildExerciseInfoParamsHTML(exerciseInfo) {
 
     if (exerciseInfo.equipment) {
         params.push(
-            `<li><span>Equipment</span> ${exerciseInfo.equipment}</li>`,
+            `<li><span>Equipment</span> ${exerciseInfo.equipment}</li>`
         );
     }
 
@@ -125,7 +125,7 @@ function buildExerciseInfoParamsHTML(exerciseInfo) {
 
     if (exerciseInfo.burnedCalories) {
         params.push(
-            `<li><span>Burned Calories</span> ${exerciseInfo.burnedCalories}</li>`,
+            `<li><span>Burned Calories</span> ${exerciseInfo.burnedCalories}</li>`
         );
     }
 
@@ -149,7 +149,7 @@ function getRatingStarsHTML(rating) {
         stars.push(
             `<svg width="18" height="18">
                 <use class="rating-star__full" href="${iconsSVG}#icon-star-18"></use>
-            </svg>`,
+            </svg>`
         );
     }
 
@@ -165,7 +165,7 @@ function getRatingStarsHTML(rating) {
                     </linearGradient>
                 </defs>
                 <use class="rating-star" href="${iconsSVG}#icon-star-18" fill="url('#myGradient')"></use>
-            </svg>`,
+            </svg>`
         );
     }
 
@@ -174,7 +174,7 @@ function getRatingStarsHTML(rating) {
         stars.push(
             `<svg width="18" height="18">
                 <use class="rating-star__empty" href="${iconsSVG}#icon-star-18"></use>
-            </svg>`,
+            </svg>`
         );
     }
 
@@ -187,8 +187,7 @@ function addToFavorites(exerciseId) {
     if (!favorites) {
         // Add exercise to favorites
         localStorage.setItem('favorites', JSON.stringify([exerciseId]));
-    }
-    else {
+    } else {
         // Parse favorites
         const favoritesArr = JSON.parse(favorites);
 
