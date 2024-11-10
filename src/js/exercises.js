@@ -173,10 +173,7 @@ function renderUserListExercises(element, listExercises) {
         <use href="${iconsSVG}#icon-running-stick-figure"></use>
     </svg>
 </div>
-        <p class="exercise-name">${exercise.name
-            .split(' ')
-            .slice(0, 2)
-            .join(' ')}</p>
+        <p class="exercise-name">${exercise.name}</p>
     </div>
     <div class="details">
         <p>Burned calories: <span class="details-calories">${
