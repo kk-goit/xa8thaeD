@@ -1,8 +1,6 @@
-
-
 /* Глобальні стилі */
 
-.hero-section {
+.hero.container {
     padding-top: 96px;
     padding-bottom: 64px;
 }
@@ -16,21 +14,13 @@
 }
 
 
-.hero-first-part {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 32px;
-}
 
 .mobile-tags,
 .desktop-tags {
     display: none;
 }
 
-.desktop-tags {
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .hero-image img {
     width: 100%;
@@ -38,7 +28,6 @@
     color: #ffffff;
     border-radius: 60px;
     object-fit: cover;
-
 }
 
 .small-image img {
@@ -49,8 +38,16 @@
 
 /* MOBILE  */
 @media screen and (max-width: 767px) {
+    .desktop-tags {
+        display: none;
+    }
     
-
+        .hero-first-part {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+    
     .hero-content {
         position: relative;
         padding: 20px;
@@ -58,10 +55,8 @@
     }
 
     .hero-content h2 {
-
-
         flex-direction: column;
-        align-items: flex-start;    
+        align-items: flex-start;
         gap: 5px;
         width: 335px;
         color: #242424;
@@ -73,7 +68,6 @@
     }
 
     .hero-content p {
-        
         width: 335px;
         font-size: 14px;
         line-height: 18px;
@@ -83,8 +77,7 @@
         letter-spacing: -0.02em;
         text-align: left;
         line-height: 1.5;
-        
-        }
+    }
 
     .hero-content .highlight {
         font-style: italic;
@@ -95,7 +88,6 @@
         height: 38px;
         fill: #000;
         margin-right: 30px;
-       
     }
 
     .mobile-tags {
@@ -113,30 +105,27 @@
         align-items: center;
     }
     .hero-image img {
-        width: 335px;
-        height: 460px;
+       
         color: #ffffff;
         border-radius: 60px;
         object-fit: cover;
     }
 
-        .small-image {
-            display: none;
-        }
+    .small-image {
+        display: none;
+    }
 }
 
 /*  TABLET  */
 @media screen and (min-width: 768px) {
-    
+    .desktop-tags {
+        display: none;
+    }
 
+    .small-image {
+        display: none;
+    }
 
-
-
-         .small-image {
-            display: none;
-         }
-
-        
     .hero-content {
         display: block;
         flex-direction: column;
@@ -147,18 +136,18 @@
         text-align: left;
     }
 
-        .hero-content h2 {
-            width: 639px;
-            text-align: left;
-            height: 148px;
-            font-size: 74px;
-            line-height: 74px;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            top: 176px;
-            left: 32px;
-            margin: 0;
-        }
+    .hero-content h2 {
+        width: 639px;
+        text-align: left;
+        height: 148px;
+        font-size: 74px;
+        line-height: 74px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        top: 176px;
+        left: 32px;
+        margin: 0;
+    }
 
     .hero-content p {
         max-width: 528px;
@@ -171,8 +160,6 @@
         text-align: left;
     }
 
-   
-
     .hero-content .highlight {
         font-style: italic;
     }
@@ -182,7 +169,6 @@
         height: 59px;
         fill: #000;
         margin-right: 0px;
-        
     }
 
     .mobile-tags {
@@ -190,13 +176,13 @@
         gap: 8px;
         font-size: 16px;
         line-height: 24px;
-        justify-content: flex-end;
+
+        justify-content: right;
         margin-top: 20px;
     }
 
     .hero-image img {
-        width: 704px;
-        height: 550px;
+        
         color: #ffffff;
         border-radius: 60px;
         object-fit: cover;
@@ -206,10 +192,17 @@
 /* DESKTOP  */
 @media screen and (min-width: 1441px) {
     
-
     .text-content {
         max-width: 60%;
     }
+
+
+        .hero-first-part {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
 
     .right-content {
         display: flex;
@@ -224,9 +217,8 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-       
+
         position: relative;
-      
     }
 
     .hero-content h2 {
@@ -252,8 +244,6 @@
         letter-spacing: -0.02em;
     }
 
-    
-
     .icon {
         width: 59px;
         height: 59px;
@@ -261,7 +251,6 @@
         top: 182px;
         left: 32px;
         margin-right: 8px;
-       
     }
 
     .tag {
@@ -289,8 +278,6 @@
         font-size: 16px;
         line-height: 24px;
         margin-top: 10px;
-        
-        
     }
 
     .hero-image img {
@@ -311,18 +298,16 @@
     }
 
     .small-image {
-        
         display: inline-block;
         top: -130px;
-        
+
         right: 0;
-       
+
         width: 168px;
         height: 100px;
         border-radius: 20px;
         overflow: hidden;
         z-index: 10;
-       
     }
 }
 
@@ -342,5 +327,4 @@
 .tag-image-wrapper {
     display: flex;
     align-items: center;
-    
 }
