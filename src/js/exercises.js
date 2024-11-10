@@ -8,7 +8,7 @@ import {
 import yourEnergy from './api/your-energy-api.js';
 import { showExersiceInfoModal } from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
-import { removeExercise } from './favorites.js';
+import { removeFromFavorites } from './exercise-info.js';
 
 import {
     replaceInnerHtmlWithLoader,
@@ -216,7 +216,7 @@ function handleExerciseStart(e) {
 function handleRemoveFavorite(e) {
     const exerciseCard = e.target.closest('.exercise-card');
     const exerciseId = exerciseCard.dataset.id;
-    removeExercise(exerciseId);
+    removeFromFavorites(exerciseId);
 }
 
 function clearMarkup() {

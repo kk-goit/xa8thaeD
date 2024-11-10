@@ -1,3 +1,5 @@
+import '../css/sct-favorites.css';
+
 import {
     replaceInnerHtmlWithLoader,
     removeLoaderFromElement,
@@ -81,4 +83,3 @@ if (favoritesElement) {
     }
 }
 
-export { removeExercise };
