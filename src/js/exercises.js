@@ -27,7 +27,9 @@ if (exercisesForm) {
     exercisesForm.addEventListener('submit', handlerSearchFormSubmit);
 }
 
-function getLimit() { return screen.width > 767 ? 10 : 8; }
+function getLimit() {
+    return screen.width > 767 ? 10 : 8;
+}
 
 function handlerSearchFormSubmit(e) {
     e.preventDefault();
@@ -133,7 +135,7 @@ async function findListOfExercises(catName, catValue) {
 
 function renderUserListExercises(element, listExercises) {
     const isFavorites = element.classList.contains('favorites');
-    
+
     const markup = listExercises
         .map(
             exercise => `
@@ -141,19 +143,22 @@ function renderUserListExercises(element, listExercises) {
   <div class="top-row">
   <div class="rating">
         <p class="badge">WORKOUT</p>
-        ${isFavorites ? `
+        ${
+            isFavorites
+                ? `
             <button type="button" class="remove-favorite" data-id=${exercise._id}>
                 <svg width="16" height="16">
                     <use class="remove-favorite__icon" href="${iconsSVG}#icon-trash"></use>
                 </svg>
-            </button>` 
-        : `<div class="rating-star">
+            </button>`
+                : `<div class="rating-star">
                 <span class='text-star'>${exercise.rating}</span>
                     <svg class="star-icon" width="18" height="18">
                         <use href="${iconsSVG}#icon-star-18"></use>
                     </svg>
             </div>
-        `}
+        `
+        }
         </div>
         <button class="start">
             Start
@@ -174,7 +179,9 @@ function renderUserListExercises(element, listExercises) {
             .join(' ')}</p>
     </div>
     <div class="details">
-        <p>Burned calories: <span>${exercise.burnedCalories} / ${exercise.time} min</span></p>
+        <p>Burned calories: <span>${exercise.burnedCalories} / ${
+                exercise.time
+            } min</span></p>
         <p>Body part: <span>${exercise.bodyPart}</span></p>
         <p>Target: <span>${exercise.target}</span></p>
     </div>
@@ -182,7 +189,7 @@ function renderUserListExercises(element, listExercises) {
         )
         .join('');
 
-        element.innerHTML = markup;
+    element.innerHTML = markup;
 
     // Add event listeners to the exercise start button
     const exerciseCards = document.querySelectorAll('.exercise-card .start');
@@ -191,7 +198,8 @@ function renderUserListExercises(element, listExercises) {
     });
 
     if (isFavorites) {
-        const removeFavoriteButtons = document.querySelectorAll('.remove-favorite');
+        const removeFavoriteButtons =
+            document.querySelectorAll('.remove-favorite');
         removeFavoriteButtons.forEach(button => {
             button.addEventListener('click', handleRemoveFavorite);
         });
@@ -212,5 +220,25 @@ function handleRemoveFavorite(e) {
 function clearMarkup() {
     exercises.innerHTML = '';
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('.exercises-input');
+    const clearButton = document.querySelector('.clear-button');
+    clearButton.style.display = 'none';
+
+    searchInput.addEventListener('input', () => {
+        if (searchInput.value.trim() !== '') {
+            clearButton.style.display = 'flex';
+        } else {
+            clearButton.style.display = 'none';
+        }
+    });
+
+    clearButton.addEventListener('click', () => {
+        searchInput.value = '';
+        clearButton.style.display = 'none';
+        searchInput.focus();
+    });
+});
 
 export { findListOfExercises, renderUserListExercises };
