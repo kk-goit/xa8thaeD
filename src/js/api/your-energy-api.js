@@ -5,7 +5,7 @@ const API_CONFIG = {
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
-    },
+    }
 };
 
 const FILTER_TYPES = ['Body parts', 'Muscles', 'Equipment'];
