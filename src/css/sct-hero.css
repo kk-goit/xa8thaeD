@@ -35,9 +35,17 @@
 
     .hero-first-part {
         display: flex;
-
         align-items: left;
         justify-content: center;
+        padding-bottom: 20px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        display: flex;
+        gap: 20px;
+        position: relative;
+        text-align: left;
     }
 
     .hero-content h2 {
@@ -67,6 +75,10 @@
 
     .hero-content .highlight {
         font-style: italic;
+    }
+
+    .tag-image-wrapper {
+        display: none;
     }
 
     .icon {
@@ -121,12 +133,14 @@
         padding-bottom: 29px;
     }
 
+    .hero-first-part {
+        padding-bottom: 32px;
+    }
+
     .hero-content {
-        display: block;
         flex-direction: column;
         display: flex;
-        gap: 10px;
-        padding-bottom: 20px;
+        gap: 20px;
         position: relative;
         text-align: left;
     }
@@ -184,7 +198,7 @@
 }
 
 /* DESKTOP  */
-@media screen and (min-width: 1441px) {
+@media screen and (min-width: 1440px) {
     .text-content {
         max-width: 60%;
     }
@@ -197,7 +211,6 @@
     .hero-first-part {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 32px;
     }
 
     .right-content {
@@ -212,7 +225,7 @@
         text-align: left;
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 20px;
 
         position: relative;
     }
@@ -311,17 +324,5 @@
     width: 100%;
     height: auto;
     display: block;
-}
-.tag-image-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.tag-image-wrapper {
-    display: flex;
-    align-items: center;
 }
 
