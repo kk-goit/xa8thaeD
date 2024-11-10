@@ -3,6 +3,8 @@ import {
     removeLoaderFromElement,
 } from './loader.js';
 import yourEnergy from './api/your-energy-api.js';
+import { renderUserListExercises } from './exercises.js';
+import { removeFromFavorites } from './exercise-info.js';
 
 const favorites = document.querySelector('.favorites');
 
@@ -121,10 +123,13 @@ window.removeExercise = removeExercise;
 const favoriteExercises = JSON.parse(localStorage.getItem('favorites'));
 console.log('favoriteExercises', favoriteExercises);
 
-if (favoriteExercises && Array.isArray(favoriteExercises)) {
-    replaceInnerHtmlWithLoader(favorites);
-    renderUserListFavorites(favoriteExercises);
-} else {
-    favorites.innerHTML =
-        "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
-}
+    if (favoriteExercises && Array.isArray(favoriteExercises)) {
+        replaceInnerHtmlWithLoader(favorites);
+        renderUserListFavorites(favoriteExercises);
+    } else {
+        favorites.innerHTML =
+            "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+    }
+
+
+export { removeExercise };

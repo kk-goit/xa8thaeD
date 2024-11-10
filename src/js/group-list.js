@@ -78,11 +78,13 @@ const fetchDataByFilter = async params => {
     return await api.getExercisesByFilter(params);
 };
 
-export const renderGroupListByFilter = async ({
+
+export const renderGroupListByFilter = async (
     filter = 'Muscles',
     page = 1,
-    limit = 12,
-} = {}) => {
+    limit = screen.width > 767? 12 : 9
+) => {
+    filter = filter.trim();
     page = getCurrentPageCategory(); // Added  by Ruslan Isupov
     activeButtonText = filter.toLowerCase(); // Take filter and save in global variable "activeButtonText"
     // console.log('renderGroupListByFilter before', filter);
@@ -114,7 +116,7 @@ export const renderGroupListByFilter = async ({
     renderPaginationButtonsCategory(
         data.totalPages,
         renderGroupListByFilter,
-        activeButtonText
+        filter
     );
 };
 
