@@ -34,7 +34,6 @@ footer {
 
 @media only screen and (min-width: 768px) {
     .footer-content {
-        justify-content: space-between;
         margin-bottom: 64px;
     }
 }
@@ -56,9 +55,17 @@ footer {
     }
 }
 
+@media only screen and (min-width: 768px) {
+    .footer-logo-socials {
+        margin-right: 114px;
+        margin-bottom: 0;
+    }
+}
+
 @media only screen and (min-width: 1440px) {
     .footer-logo-socials {
         margin-right: 158px;
+        margin-bottom: 0;
     }
 }
 
@@ -161,7 +168,7 @@ footer {
 
 @media only screen and (min-width: 768px) {
     .footer-subscribe {
-        margin-left: auto;
+        margin-left: 270px;
         width: 434px;
     }
 }
@@ -169,6 +176,7 @@ footer {
 @media only screen and (min-width: 1440px) {
     .footer-subscribe {
         width: 352px;
+        margin-left: auto;
     }
 }
 
