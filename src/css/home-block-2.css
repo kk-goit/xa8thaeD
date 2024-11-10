@@ -1,8 +1,7 @@
 .section-top {
     width: 100%;
-    padding: 20px 0 0;
     margin: 0 auto;
-    padding-left: 0;
+    padding-bottom: 20px;
 }
 
 .section-title {
@@ -49,19 +48,20 @@
     margin-top: 8px;
 }
 
-@media (min-width: 768px) and (max-width: 1439px) {
+@media (min-width: 768px) and (max-width: 1440px) {
     .section-title {
         font-size: 44px;
         line-height: 1.09;
         flex-basis: 100%;
     }
 
-    .section-top:has(.exercises-form) {
+    .section-top {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         row-gap: 32px;
+        padding-bottom: 32px;
     }
 
     .exercises-menu-button {
@@ -75,7 +75,5 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 32px 0 0;
-        margin-top: 32px;
     }
 }
