@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'DM Sans';
+    src: url('/fonts/DMSans.ttf') format('truetype');
+    font-weight: 100 700; /* Adjust this range based on the font */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('/fonts/DMSans-Italic.ttf') format('truetype');
+    font-weight: 100 700; /* Adjust this range based on the font */
+    font-style: italic;
+}
+
 :root {
     /* fonts */
     --font-family: 'DM Sans', sans-serif;
@@ -17,12 +31,12 @@
     --color-stars-empty: rgba(244, 244, 244, 0.2);
 
     --color-exmenu-add: rgba(36, 36, 36, 0.5);
-    --color-exmenu-inact: rgba(36, 36, 36, 0.6);
+    --color-exmenu-inact: rgba(36, 36, 36, 0.7);
 
     --color-quote-text: rgba(244, 244, 244, 0.6);
     --color-quote-ifill: rgba(244, 244, 244, 0.2);
 
-    --color-110m-light: rgba(36, 36, 36, 0.6);
+    --color-110m-light: rgba(36, 36, 36, 0.7);
 
     --color-section-light: rgba(244, 244, 244, 0.4);
 
