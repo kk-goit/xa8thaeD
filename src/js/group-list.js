@@ -83,7 +83,8 @@ export const renderGroupListByFilter = async (
     filter = 'Muscles',
     page = 1,
     limit = screen.width > 767? 12 : 9
-    ) => {
+) => {
+    filter = filter.trim();
     page = getCurrentPageCategory(); // Added  by Ruslan Isupov
     activeButtonText = filter.toLowerCase(); // Take filter and save in global variable "activeButtonText"
     // console.log('renderGroupListByFilter before', filter);
