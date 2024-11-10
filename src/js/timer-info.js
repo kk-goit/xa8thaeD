@@ -6,7 +6,6 @@ function setTime() {
 
   const time = Math.floor((localStorage.getItem('timer') || 0) / 60);
   const burntCalories = localStorage.getItem('burntCalories') || 0;
-  console.log('==== time, burntCalories ==> ', time, burntCalories);
 
   timeLine.innerText = `${time || 0} min`;
   calories.innerText = Math.floor(Number(burntCalories) / 1000 || 0).toString();
