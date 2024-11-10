@@ -179,11 +179,13 @@ function renderUserListExercises(element, listExercises) {
             .join(' ')}</p>
     </div>
     <div class="details">
-        <p>Burned calories: <span>${exercise.burnedCalories} / ${
-                exercise.time
-            } min</span></p>
-        <p>Body part: <span>${exercise.bodyPart}</span></p>
-        <p>Target: <span>${exercise.target}</span></p>
+        <p>Burned calories: <span class="details-calories">${
+            exercise.burnedCalories
+        } / ${exercise.time} min</span></p>
+        <p>Body part: <span class="details-calories">${
+            exercise.bodyPart
+        }</span></p>
+        <p>Target: <span class="details-target">${exercise.target}</span></p>
     </div>
 </li>`
         )
