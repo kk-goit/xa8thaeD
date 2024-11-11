@@ -6,6 +6,7 @@ import {
     changeFetchMethod,
 } from './pagination-exercises.js';
 import yourEnergy from './api/your-energy-api.js';
+import toastManager from './api/toast-manager.js';
 import { showExersiceInfoModal } from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
 import { removeFromFavorites } from './exercise-info.js';
@@ -35,7 +36,7 @@ function handlerSearchFormSubmit(e) {
     e.preventDefault();
 
     keyword = e.target.elements.search.value.trim();
-    console.log(keyword);
+    // console.log(keyword);
     if (!keyword) {
         alert('Please, enter a search words');
         return;
@@ -55,7 +56,7 @@ async function searchListOfExercises() {
         [categoryName]: categoryValue,
         keyword,
     });
-    console.group(
+    /* console.group(
         page,
         'searchListOfExercises',
         categoryName,
@@ -63,7 +64,7 @@ async function searchListOfExercises() {
         keyword,
         listOfExercises,
         listOfExercises.totalPages
-    );
+    ); // */
     renderUserListExercises(exercises, listOfExercises.results);
     changeFetchMethod('search');
     renderPaginationButtonsSearch(
@@ -107,14 +108,14 @@ async function findListOfExercises(catName, catValue) {
         // }
 
         exercisesForm.classList.remove('visually-hidden');
-        console.group(
+        /* console.group(
             page,
             'findListOfExercises',
             categoryName,
             categoryValue,
             listOfExercises,
             listOfExercises.totalPages
-        );
+        ); // */
         renderUserListExercises(exercises, listOfExercises.results);
         changeFetchMethod('exercises');
         renderPaginationButtonsExercises(
@@ -125,10 +126,10 @@ async function findListOfExercises(catName, catValue) {
         );
     } catch (err) {
         clearMarkup();
-        console.log(err);
+        toastManager.error('Error', err);
     } finally {
         removeLoaderFromElement(exercises);
-        console.log('Buy');
+        // console.log('Buy');
         // form.reset();
     }
 }
@@ -240,9 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
             clearButton.style.display = 'none';
             searchInput.focus();
         });
-    } else {
+    } /* else {
         console.warn('.exercises-input not found');
-    }
+    } // */
 });
 
 export { findListOfExercises, renderUserListExercises };

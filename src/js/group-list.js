@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         renderGroupListByFilter();
-    } else {
+    } /* else {
         console.warn('Елемент .group-list не знайдено.');
-    }
+    } // */
 });
 
 const getGroupItemHTMLString = ({ filter, name, imgURL }) =>
@@ -110,13 +110,13 @@ export const renderGroupListByFilter = async (
     renderGroupList(data.results);
     //  Pagination
     changeFetchMethod('category');
-    console.group(
+    /* console.group(
         page,
         'renderGroupListByFilter',
         activeButtonText,
         filter,
         data.totalPages
-    );
+    ); // */
     renderPaginationButtonsCategory(
         data.totalPages,
         renderGroupListByFilter,

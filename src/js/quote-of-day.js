@@ -1,4 +1,5 @@
 import yourEnergy from './api/your-energy-api';
+import toastManager from './api/toast-manager.js';
 
 const today = new Date().toISOString().slice(0, 10);
 const quote = document.querySelector(".blockquote-text");
@@ -21,7 +22,7 @@ if(quoteInStorage && quoteInStorage.date === today) {
                 quote.innerHTML = response.quote;
                 author.innerHTML = response.author;
             } else {
-                console.log(response);
+                toastManager.error('Error', response);
             }
         })
         .catch(() => {
