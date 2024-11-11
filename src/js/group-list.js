@@ -45,13 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const getGroupItemHTMLString = ({ filter, name, imgURL }) =>
     `
-    <div
+    <li
       class="group-list__item"
       data-name="${name}"
     >
       <img
         class="group-list__item-image"
         src="${imgURL}"
+        alt="${name}"
+        width="335"
+        height="225"
+        loading="lazy"
       >
       <div class="group-list__item-image-filter"></div>
       <div class="group-list__item-title">
@@ -60,7 +64,7 @@ const getGroupItemHTMLString = ({ filter, name, imgURL }) =>
       <div class="group-list__item-subtitle">
         ${filter}
       </div>
-    </div>
+    </li>
   `;
 
 const getGroupListHTMLString = categoryList => {
