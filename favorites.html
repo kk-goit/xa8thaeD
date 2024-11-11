@@ -11,10 +11,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"/>
     <script type="module" crossorigin src="/xa8thaeD/favorites.js"></script>
     <link rel="modulepreload" crossorigin href="/xa8thaeD/assets/vendor-v1Cmh7Ux.js">
-    <link rel="modulepreload" crossorigin href="/xa8thaeD/assets/main-Dgqzv7lz.js">
-    <link rel="stylesheet" crossorigin href="/xa8thaeD/assets/main-Cx52z522.css">
+    <link rel="modulepreload" crossorigin href="/xa8thaeD/assets/main-DcjSqWic.js">
+    <link rel="stylesheet" crossorigin href="/xa8thaeD/assets/main-DipuSXDf.css">
     <link rel="stylesheet" crossorigin href="/xa8thaeD/assets/vendor-DnveWo0P.css">
-    <link rel="stylesheet" crossorigin href="/xa8thaeD/assets/favorites-BklVeDEr.css">
+    <link rel="stylesheet" crossorigin href="/xa8thaeD/assets/favorites-Djt9LN94.css">
   </head>
   <body>
     <header class="header">
@@ -157,11 +157,13 @@
 
 </header>
 
-    <main class="container">
+    <main>
       <section class="favorites-page">
-    <h2 class="section-title">Favorites</h2>
-    <div class="quote-wrapper">
-        <div class="quote-of-day">
+    <div class="container">
+        <h2 class="section-title">Favorites</h2>
+        <div class="favorites-blocks-wrapper">
+            <div class="static-wrapper">
+                <div class="quote-of-day">
     <div class="quote-icon-wrapper">
         <svg width="18" height="20"  viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
             <use href="/xa8thaeD/assets/icons-DfGzQ-YE.svg#icon-running-stick-figure"></use>
@@ -180,25 +182,17 @@
         <p class="quote-author"></p>
     </div>
 </div>
-        
-        <ul class="norm-of-sports">
-    <li class="exercise-card">
-        <div class="top-row">
-            <div class="rating">
-                <svg class="trash-icon" width="18" height="18">
-                    <use href="/xa8thaeD/assets/icons-DfGzQ-YE.svg#icon-dumbbell"></use>
-                </svg>
-            </div>
-        </div>
-        <div class="exercise-info">
-            <p class="badge">110 min</p>
-        </div>
-        <div class="details">
-            <p>Daily norm of sports</p>
-        </div>
+                <ul class="norm-of-sports">
+    <li class="norm-of-sports-card">
+        <svg class="dumbell-icon" width="20" height="20">
+            <use href="/xa8thaeD/assets/icons-DfGzQ-YE.svg#icon-dumbbell"></use>
+        </svg>
+
+        <p class="exercise-time">110 min</p>
+        <p class="daily-norm-of-sports">Daily norm of sports</p>
     </li>
-    <li class="">
-        <img
+    <li class="norm-of-sports-card no-paddings">
+        <img 
             class="women-outdoors-card"
             src="/xa8thaeD/assets/favorits-women-m-D3JVzD59.jpg"
             alt="Women sportswear working out outdoors"
@@ -207,10 +201,12 @@
     </li>
 </ul>
 
-    </div>
-
-    <ul class="favorites"></ul>
+            </div>
+            <ul class="favorites"></ul>
 <div class="pagination"></div>
+
+        </div>
+    </div>
 </section>
 
     </main>
