@@ -99,7 +99,6 @@ body {
     font-weight: 500;
     color: var(--clr-main-dark);
     background-color: var(--color-main-bg);
-    min-width: var(--bp-mobile);
 
     /*  For better font rendering */
     -webkit-font-smoothing: antialiased;
