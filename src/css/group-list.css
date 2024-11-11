@@ -1,3 +1,9 @@
+.group-list-pagination-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
 .group-list {
     font-family: var(--font-family);
     display: flex;

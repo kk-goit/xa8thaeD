@@ -1,3 +1,7 @@
+.exercises {
+    padding-bottom: 80px;
+}
+
 .exercises-group-list {
     display: flex;
     flex-direction: column;
@@ -12,6 +16,10 @@
         flex-wrap: wrap;
         row-gap: 32px;
         column-gap: 16px;
+    }
+
+    .exercises {
+        padding-bottom: 100px;
     }
 }
 
@@ -38,6 +46,10 @@
     .exercises-group-list {
         flex-direction: row;
         justify-content: space-between;
+    }
+
+    .exercises {
+        padding-bottom: 132px;
     }
 }
 
