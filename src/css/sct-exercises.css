@@ -148,6 +148,10 @@
     font-weight: 400;
     line-height: 1;
     color: var(--color-main-dark);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 263px;
 }
 
 .exercise-info__title::first-letter {
@@ -161,6 +165,13 @@
 @media only screen and (min-width: 768px) {
     .exercise-name {
         line-height: 1.33;
+        width: 272px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .exercise-name {
+        width: 370px;
     }
 }
 
