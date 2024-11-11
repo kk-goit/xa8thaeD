@@ -1,29 +1,5 @@
 <div class="static-image-wrapper">
     <picture>
-        <source 
-            srcset="
-            ./img/home-women-taking-break.jpg 1x, 
-            ./img/home-women-taking-break@2x.jpg 2x" 
-            media="(min-width: 1440px)">
-    
-      <!-- Для екранів від 768px до 1167px -->
-        <source 
-            srcset="
-            ./img/home-women-taking-break-p.jpg 1x, 
-            ./img/home-women-taking-break-p@2x.jpg 2x" 
-            media="(min-width: 768px)">
-    
-        <!-- Для екранів менше 768px -->
-        <img 
-            src="./img/home-women-taking-break-m.jpg"
-            srcset="
-            ./img/home-women-taking-break-m.jpg 1x, 
-            ./img/home-women-taking-break-m@2x.jpg 2x" 
-            alt="Talking women"
-            class="static-image"
-        >
-    </picture>
-    <picture>
         <!-- AVIF format (highest priority for browsers that support it) -->
         <source srcset="./img/home-women-taking-break-m.avif 1x, ./img/home-women-taking-break-m@2x.avif 2x" type="image/avif" media="(max-width: 767px)">
         <source srcset="./img/home-women-taking-break-p.avif 1x, ./img/home-women-taking-break-p@2x.avif 2x" type="image/avif" media="(min-width: 768px) and (max-width: 1440px)">
@@ -40,7 +16,7 @@
         <source srcset="./img/home-women-taking-break.jpg 1x, ./img/home-women-taking-break@2x.jpg 2x" media="(min-width: 1441px)">
         
         <!-- Fallback <img> for very old browsers that don’t support <picture> -->
-        <img src="./img/home-women-taking-break.jpg" srcset="./img/home-women-taking-break.jpg 1x, ./img/home-women-taking-break@2x.jpg 2x" alt="Hero Image">
+        <img class="static-image" src="./img/home-women-taking-break.jpg" srcset="./img/home-women-taking-break.jpg 1x, ./img/home-women-taking-break@2x.jpg 2x" alt="Hero Image">
     </picture>
 </div>
 <div class="static-block">
