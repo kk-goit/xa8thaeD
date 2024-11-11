@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (element) {
                 // console.log('catValue', element.dataset.name);
                 findListOfExercises(activeButtonText, element.dataset.name); //Added by Ruslan Isupov click card and make a request from server;
-                sectionTitle.innerHTML = `Exercises / <span class='exercises-category'>${element.dataset.name}</span>`;
+                sectionTitle.innerHTML = `Exercises / <span class='exercises-category' id='categoryValue'>${element.dataset.name}</span>`;
             }
         });
 

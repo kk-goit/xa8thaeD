@@ -224,7 +224,7 @@ function clearMarkup() {
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.exercises-input');
     const clearButton = document.querySelector('.clear-button');
-    
+
     if (searchInput && clearButton) {
         clearButton.style.display = 'none';
 
@@ -238,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         clearButton.addEventListener('click', () => {
             searchInput.value = '';
+            findListOfExercises(categoryName, categoryValue);
             clearButton.style.display = 'none';
             searchInput.focus();
         });
