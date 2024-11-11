@@ -4,24 +4,21 @@
     <meta charset="UTF-8"/>
 <link rel="icon" type="image/svg+xml" href="/xa8thaeD/favicon.svg"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="YOUR ENERGY is platform to get your body in shape and stay healthy"/>
 <title>YOUR ENERGY</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..500;1,9..40,400..500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"/>
     <script type="module" crossorigin src="/xa8thaeD/index.js"></script>
     <link rel="modulepreload" crossorigin href="/xa8thaeD/assets/vendor-v1Cmh7Ux.js">
-    <link rel="modulepreload" crossorigin href="/xa8thaeD/assets/main-DcjSqWic.js">
+    <link rel="modulepreload" crossorigin href="/xa8thaeD/assets/main-BFcofTwF.js">
     <link rel="stylesheet" crossorigin href="/xa8thaeD/assets/vendor-DnveWo0P.css">
-    <link rel="stylesheet" crossorigin href="/xa8thaeD/assets/main-DipuSXDf.css">
+    <link rel="stylesheet" crossorigin href="/xa8thaeD/assets/main-DoNTFF3g.css">
   </head>
   <body>
     <header class="header">
     <div class="container">
         <div class="header-container">
             <nav class="header-nav">
-                <a class="logo" href="./">
-                    <svg class="logo-icon" width="132" height="24">
+                <a class="logo" href="./" aria-label="Your Energy Home Page">
+                    <svg class="logo-icon" width="132" height="24" role="img" aria-hidden="true">
                         <use href="/xa8thaeD/assets/icons-DfGzQ-YE.svg#icon-logo"></use>
                     </svg>
                 </a>
@@ -192,13 +189,25 @@
         <!-- Головне зображення (герой-картинка) -->
         <div class="hero-image">
             <picture>
-                <source srcset="/xa8thaeD/assets/hero-m-D1xRDM7f.jpg 1x, /xa8thaeD/assets/hero-m@2x-BdjMCH57.jpg 2x" media="(max-width: 767px)" />
-                <source srcset="/xa8thaeD/assets/hero-p-BwPanUfI.jpg 1x, /xa8thaeD/assets/hero-p@2x-C4wzVGjD.jpg 2x"
-                    media="(min-width: 768px) and (max-width: 1440px)" />
-                <source srcset="/xa8thaeD/assets/hero-BgqbJ_o9.jpg 1x, /xa8thaeD/assets/hero@2x-BteHjbLw.jpg 2x" media="(min-width: 1441px)" />
-                <img src="/xa8thaeD/assets/hero-BgqbJ_o9.jpg" srcset="/xa8thaeD/assets/hero-BgqbJ_o9.jpg 1x, /xa8thaeD/assets/hero@2x-BteHjbLw.jpg 2x" alt="Hero Image" />
+                <!-- AVIF format (highest priority for browsers that support it) -->
+                <source srcset="/xa8thaeD/assets/hero-m-CNvMicEq.avif 1x, /xa8thaeD/assets/hero-m@2x-D8-qnTdg.avif 2x" type="image/avif" media="(max-width: 767px)">
+                <source srcset="/xa8thaeD/assets/hero-p-BQlGF3c4.avif 1x, /xa8thaeD/assets/hero-p@2x-C5wqrLpn.avif 2x" type="image/avif" media="(min-width: 768px) and (max-width: 1440px)">
+                <source srcset="/xa8thaeD/assets/hero-CnpsCJfb.avif 1x, /xa8thaeD/assets/hero@2x-YuweN0Mz.avif 2x" type="image/avif" media="(min-width: 1441px)">
+                
+                <!-- WebP format (second priority for browsers that don't support AVIF but support WebP) -->
+                <source srcset="/xa8thaeD/assets/hero-m--uisbDac.webp 1x, /xa8thaeD/assets/hero-m@2x-CAk7AqKm.webp 2x" type="image/webp" media="(max-width: 767px)">
+                <source srcset="/xa8thaeD/assets/hero-p-DTnwt5h3.webp 1x, /xa8thaeD/assets/hero-p@2x-R2X44S2C.webp 2x" type="image/webp" media="(min-width: 768px) and (max-width: 1440px)">
+                <source srcset="/xa8thaeD/assets/hero-IxxqIKyx.webp 1x, /xa8thaeD/assets/hero@2x-BXs0GCmZ.webp 2x" type="image/webp" media="(min-width: 1441px)">
+                
+                <!-- JPEG fallback (third priority for older browsers without AVIF or WebP support) -->
+                <source srcset="/xa8thaeD/assets/hero-m-D1xRDM7f.jpg 1x, /xa8thaeD/assets/hero-m@2x-BdjMCH57.jpg 2x" media="(max-width: 767px)">
+                <source srcset="/xa8thaeD/assets/hero-p-BwPanUfI.jpg 1x, /xa8thaeD/assets/hero-p@2x-C4wzVGjD.jpg 2x" media="(min-width: 768px) and (max-width: 1440px)">
+                <source srcset="/xa8thaeD/assets/hero-BgqbJ_o9.jpg 1x, /xa8thaeD/assets/hero@2x-BteHjbLw.jpg 2x" media="(min-width: 1441px)">
+                
+                <!-- Fallback <img> for very old browsers that don’t support <picture> -->
+                <img src="/xa8thaeD/assets/hero-BgqbJ_o9.jpg" srcset="/xa8thaeD/assets/hero-BgqbJ_o9.jpg 1x, /xa8thaeD/assets/hero@2x-BteHjbLw.jpg 2x" alt="Hero Image">
             </picture>
-        </div>
+        </div>        
 
         <!-- Теги для мобільної версії знизу -->
         <div class="tags mobile-tags">
@@ -286,22 +295,23 @@
 </div>
     <div class="static-image-wrapper">
     <picture>
-        <source 
-            srcset="/xa8thaeD/assets/home-women-taking-break-DHxtOOKE.jpg 1x, /xa8thaeD/assets/home-women-taking-break@2x-AzbA6ONK.jpg 2x" 
-            media="(min-width: 1440px)">
-    
-      <!-- Для екранів від 768px до 1167px -->
-        <source 
-            srcset="/xa8thaeD/assets/home-women-taking-break-p-p2AFLVsv.jpg 1x, /xa8thaeD/assets/home-women-taking-break-p@2x-B_BaLm9-.jpg 2x" 
-            media="(min-width: 768px)">
-    
-        <!-- Для екранів менше 768px -->
-        <img 
-            src="/xa8thaeD/assets/home-women-taking-break-m-CwW8L7Fv.jpg"
-            srcset="/xa8thaeD/assets/home-women-taking-break-m-CwW8L7Fv.jpg 1x, /xa8thaeD/assets/home-women-taking-break-m@2x-Bsq-2_-A.jpg 2x" 
-            alt="Talking women"
-            class="static-image"
-        >
+        <!-- AVIF format (highest priority for browsers that support it) -->
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-m-CrbOWlvO.avif 1x, /xa8thaeD/assets/home-women-taking-break-m@2x-DUL_y8y6.avif 2x" type="image/avif" media="(max-width: 767px)">
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-p-C-QGypZ9.avif 1x, /xa8thaeD/assets/home-women-taking-break-p@2x-e1wikiaD.avif 2x" type="image/avif" media="(min-width: 768px) and (max-width: 1440px)">
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-B9BSaMsU.avif 1x, /xa8thaeD/assets/home-women-taking-break@2x-CR25KbXs.avif 2x" type="image/avif" media="(min-width: 1441px)">
+        
+        <!-- WebP format (second priority for browsers that don't support AVIF but support WebP) -->
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-m-MJjhAuTu.webp 1x, /xa8thaeD/assets/home-women-taking-break-m@2x-BBHBi6dC.webp 2x" type="image/webp" media="(max-width: 767px)">
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-p-CsBoLi1S.webp 1x, /xa8thaeD/assets/home-women-taking-break-p@2x-CpwIWoiO.webp 2x" type="image/webp" media="(min-width: 768px) and (max-width: 1440px)">
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-BUNribHV.webp 1x, /xa8thaeD/assets/home-women-taking-break@2x-CoWh3lwz.webp 2x" type="image/webp" media="(min-width: 1441px)">
+        
+        <!-- JPEG fallback (third priority for older browsers without AVIF or WebP support) -->
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-m-CwW8L7Fv.jpg 1x, /xa8thaeD/assets/home-women-taking-break-m@2x-Bsq-2_-A.jpg 2x" media="(max-width: 767px)">
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-p-p2AFLVsv.jpg 1x, /xa8thaeD/assets/home-women-taking-break-p@2x-B_BaLm9-.jpg 2x" media="(min-width: 768px) and (max-width: 1440px)">
+        <source srcset="/xa8thaeD/assets/home-women-taking-break-DHxtOOKE.jpg 1x, /xa8thaeD/assets/home-women-taking-break@2x-AzbA6ONK.jpg 2x" media="(min-width: 1441px)">
+        
+        <!-- Fallback <img> for very old browsers that don’t support <picture> -->
+        <img class="static-image" src="/xa8thaeD/assets/home-women-taking-break-DHxtOOKE.jpg" srcset="/xa8thaeD/assets/home-women-taking-break-DHxtOOKE.jpg 1x, /xa8thaeD/assets/home-women-taking-break@2x-AzbA6ONK.jpg 2x" alt="Hero Image">
     </picture>
 </div>
 <div class="static-block">
@@ -330,8 +340,8 @@
     <div class="footer-container container">
         <div class="footer-content">
             <div class="footer-logo-socials">
-                <a class="logo" href="./">
-                    <svg class="logo-icon" height="24" width="132">
+                <a class="logo" href="./" aria-label="Your Energy Home Page">
+                    <svg class="logo-icon" height="24" width="132" role="img" aria-hidden="true">
                         <use href="/xa8thaeD/assets/icons-DfGzQ-YE.svg#icon-logo"></use>
                     </svg>
                 </a>
