@@ -36,7 +36,7 @@
     .hero-first-part {
         display: flex;
         justify-content: center;
-        padding-bottom: 20px;
+        margin-bottom: 20px;
     }
 
     .hero-content {
@@ -65,7 +65,6 @@
         font-size: 14px;
         line-height: 18px;
         color: #242424;
-        margin: 10px 0 0;
         font-weight: 400;
         letter-spacing: -0.02em;
         text-align: left;
@@ -133,7 +132,7 @@
     }
 
     .hero-first-part {
-        padding-bottom: 32px;
+        margin-bottom: 32px;
     }
 
     .hero-content {
@@ -162,7 +161,6 @@
         font-size: 18px;
         line-height: 24px;
         color: #242424;
-        margin: 10px 0 0;
         font-weight: 400;
         letter-spacing: -0.02em;
         text-align: left;
@@ -184,9 +182,8 @@
         gap: 8px;
         font-size: 16px;
         line-height: 24px;
-
         justify-content: right;
-        margin-top: 20px;
+        margin-top: 16px;
     }
 
     .hero-image img {
@@ -247,7 +244,6 @@
         font-size: 18px;
         line-height: 24px;
         color: #242424;
-        margin: 10px 0 0;
         font-weight: 400;
         letter-spacing: -0.02em;
     }
@@ -285,7 +281,6 @@
         justify-content: end;
         font-size: 16px;
         line-height: 24px;
-        margin-top: 10px;
     }
 
     .hero-image img {
@@ -300,17 +295,15 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
-        gap: 10px;
-        margin-top: 20px;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 32px;
     }
 
     .small-image {
         display: inline-block;
         top: -130px;
-
         right: 0;
-
         width: 168px;
         height: 100px;
         border-radius: 20px;
