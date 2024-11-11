@@ -1,12 +1,11 @@
 .favorites-page {
-    padding: 32px;
+    padding-top: 60px;
 }
 
 .favorites {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: center;
     margin-top: 40px;
 }
 
@@ -17,17 +16,16 @@
     align-items: center;
 }
 
-.quote-wrapper {
+.static-wrapper {
+    margin-top: 20px;
     max-width: 335px;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 .norm-of-sports-card {
-    width: 335px;
+    width: 100%;
     height: 119px;
     padding: 20px;
     background-color: var(--color-workout-bg);
@@ -36,8 +34,8 @@
 
 .women-outdoors-card {
     border-radius: 15px;
-    width: 335px;
-    height: 119px;
+    width: 100%;
+    height: 100%;
 }
 
 .pagination {
@@ -45,17 +43,24 @@
     gap: 0px;
 }
 
-.favorites-card {
-    width: 335px;
-    height: 141px;
-    padding: 16px;
-    background-color: var(--color-workout-bg);
-    border-radius: 15px;
+.exercise-time {
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-main-dark);
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+
+.daily-norm-of-sports {
+    color: var(--color-fav-sports);
 }
 
 @media only screen and (min-width: 768px) {
-    .quote-wrapper {
+    .static-wrapper {
         max-width: 704px;
+        margin-top: 32px;
     }
 
     .norm-of-sports {
@@ -69,21 +74,13 @@
         flex-wrap: wrap;
         row-gap: 32px;
         column-gap: 16px;
-        justify-content: center;
+        justify-content: space-between;
     }
 
     .norm-of-sports-card {
         width: 344px;
         height: 141px;
-    }
-
-    .women-outdoors-card {
-        width: 344px;
-        height: 141px;
-    }
-
-    .favorites-card {
-        width: 344px;
+        padding: 25px;
     }
 
     .pagination {
@@ -93,15 +90,19 @@
     .favorites {
         margin-top: 56px;
     }
+
+    .static-wrapper .quote-of-day {
+        width: 100%;
+    }
+}
+
+.no-paddings {
+    padding: 0;
 }
 
 @media only screen and (min-width: 1440px) {
-    .quote-wrapper {
+    .static-wrapper {
         max-width: 494px;
-    }
-
-    .favorites-page {
-        display: flex;
     }
 
     .women-outdoors-card {
@@ -112,16 +113,42 @@
         display: none;
     }
 
-    .favorites-card {
+    .favorites-blocks-wrapper {
+        display: flex;
+        gap: 32px;
+    }
+
+    .favorites {
+        margin-top: 32px;
+    }
+
+    .favorites-page .container .section-title {
+        font-size: 44px;
+    }
+
+    .favorites .exercise-card {
         width: 405px;
     }
 
-}
+    .favorites-scroll-container {
+        max-height: 550px;
+        overflow-y: scroll;
+        padding-right: 16px;
+        scrollbar-width: thin;
+    }
 
-.arrow-running-icon {
-    border-radius: 50%;
-    background-color: #242424;
-    fill: #f4f4f4;
+    .favorites-scroll-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .favorites-scroll-container::-webkit-scrollbar-track {
+        background: var(--color-fav-scroll-bg);
+    }
+
+    .favorites-scroll-container::-webkit-scrollbar-thumb {
+        background-color: var(--color-main-dark);
+        border-radius: 4px;
+    }
 }
 
 .pagination-button {
@@ -139,20 +166,6 @@
     border-radius: 50%;
 }
 
-.exercise-time {
-    font-family: var(--font-family);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-    color: var(--color-main-dark);
-    margin-top: 15px;
-    margin-bottom: 6px;
-}
-
-.daily-norm-of-sports {
-    color: var(--color-fav-sports);
-}
-
 .delete-btn {
     background: none;
     border: none;
@@ -162,4 +175,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.no-favorites {
+    text-align: center;
 }
