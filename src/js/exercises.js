@@ -214,7 +214,7 @@ function handleExerciseStart(e) {
 function handleRemoveFavorite(e) {
     const exerciseCard = e.target.closest('.exercise-card');
     const exerciseId = exerciseCard.dataset.id;
-    removeFromFavorites(exerciseId);
+    removeFromFavorites(exerciseId, true);
 }
 
 function clearMarkup() {

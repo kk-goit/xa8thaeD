@@ -195,9 +195,10 @@ function addToFavorites(exerciseId) {
         favoritesArr.push(exerciseId);
         localStorage.setItem('favorites', JSON.stringify(favoritesArr));
     }
+    sessionStorage.removeItem('favorites2del');
 }
 
-function removeFromFavorites(exerciseId) {
+function removeFromFavorites(exerciseId, force = false) {
     // Get data from local storage
     const favorites = localStorage.getItem('favorites');
     if (!favorites) {
@@ -211,13 +212,16 @@ function removeFromFavorites(exerciseId) {
     const updatedFavorites = favoritesArr.filter(id => id !== exerciseId);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 
-    // Remove exercise from favorites list if it's open
+    // Mark to Remove exercise from favorites list if it's open
     const favoritesList = document.querySelector('.favorites');
     if (favoritesList) {
-        const exerciseCard = favoritesList.querySelector(`.exercise-card[data-id="${exerciseId}"]`);
-        if (exerciseCard) {
-            exerciseCard.remove();
-        }
+        if (force) {
+            const exerciseCard = favoritesList.querySelector(`.exercise-card[data-id="${exerciseId}"]`);
+            if (exerciseCard) {
+                exerciseCard.remove();
+            }
+        } else
+            sessionStorage.setItem('favorites2del', exerciseId);
     }
 }
 

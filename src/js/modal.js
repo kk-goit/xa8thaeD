@@ -82,6 +82,18 @@ class Modal {
             document.body.style.paddingRight = '';
         }
         
+        const exerciseId = sessionStorage.getItem('favorites2del');
+        if (exerciseId) {
+            // Remove exercise from favorites list if it's open
+            const favoritesList = document.querySelector('.favorites');
+            if (favoritesList) {
+                const exerciseCard = favoritesList.querySelector(`.exercise-card[data-id="${exerciseId}"]`);
+                if (exerciseCard) {
+                    exerciseCard.remove();
+                }
+            }
+            sessionStorage.removeItem('favorites2del');
+        }
         
         this.backdrop.remove();
     }

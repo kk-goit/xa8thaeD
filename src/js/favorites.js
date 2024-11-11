@@ -6,12 +6,11 @@ import {
 } from './loader.js';
 import yourEnergy from './api/your-energy-api.js';
 import { renderUserListExercises } from './exercises.js';
-import { removeFromFavorites } from './exercise-info.js';
 
 const favorites = document.querySelector('.favorites');
 
 const paginationContainer = document.querySelector('.pagination');
-const exercisesPerPage = 10;
+const exercisesPerPage = screen.width > 767? 10 : 8;
 let currentPage = 1;
 
 async function renderExercisesPage(favoritesList, page = 1) {
@@ -73,10 +72,6 @@ function renderPagination(favoritesList) {
 function renderUserListFavorites(listFavorites) {
     renderExercisesPage(listFavorites, currentPage);
     renderPagination(listFavorites);
-}
-
-function removeExercise(exerciseId) {
-    removeFromFavorites(exerciseId);
 }
 
 const favoritesElement = document.querySelector('.favorites');
