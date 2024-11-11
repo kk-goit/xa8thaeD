@@ -8,7 +8,7 @@ import {
 import yourEnergy from './api/your-energy-api.js';
 import { showExersiceInfoModal } from './exercise-info.js';
 import iconsSVG from '../img/icons.svg';
-import { removeExercise } from './favorites.js';
+import { removeFromFavorites } from './exercise-info.js';
 
 import {
     replaceInnerHtmlWithLoader,
@@ -173,10 +173,7 @@ function renderUserListExercises(element, listExercises) {
         <use href="${iconsSVG}#icon-running-stick-figure"></use>
     </svg>
 </div>
-        <p class="exercise-name">${exercise.name
-            .split(' ')
-            .slice(0, 2)
-            .join(' ')}</p>
+        <p class="exercise-name">${exercise.name}</p>
     </div>
     <div class="details">
         <p>Burned calories: <span class="details-calories">${
@@ -216,7 +213,7 @@ function handleExerciseStart(e) {
 function handleRemoveFavorite(e) {
     const exerciseCard = e.target.closest('.exercise-card');
     const exerciseId = exerciseCard.dataset.id;
-    removeExercise(exerciseId);
+    removeFromFavorites(exerciseId);
 }
 
 function clearMarkup() {
@@ -226,21 +223,26 @@ function clearMarkup() {
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.exercises-input');
     const clearButton = document.querySelector('.clear-button');
-    clearButton.style.display = 'none';
-
-    searchInput.addEventListener('input', () => {
-        if (searchInput.value.trim() !== '') {
-            clearButton.style.display = 'flex';
-        } else {
-            clearButton.style.display = 'none';
-        }
-    });
-
-    clearButton.addEventListener('click', () => {
-        searchInput.value = '';
+    
+    if (searchInput && clearButton) {
         clearButton.style.display = 'none';
-        searchInput.focus();
-    });
+
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value.trim() !== '') {
+                clearButton.style.display = 'flex';
+            } else {
+                clearButton.style.display = 'none';
+            }
+        });
+
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            clearButton.style.display = 'none';
+            searchInput.focus();
+        });
+    } else {
+        console.warn('.exercises-input not found');
+    }
 });
 
 export { findListOfExercises, renderUserListExercises };

@@ -1,3 +1,5 @@
+import '../css/sct-favorites.css';
+
 import {
     replaceInnerHtmlWithLoader,
     removeLoaderFromElement,
@@ -13,9 +15,19 @@ const exercisesPerPage = 10;
 let currentPage = 1;
 
 async function renderExercisesPage(favoritesList, page = 1) {
-    const startIndex = (page - 1) * exercisesPerPage;
-    const endIndex = startIndex + exercisesPerPage;
-    const currentExercises = favoritesList.slice(startIndex, endIndex);
+    const isDesktopView = window.innerWidth >= 1440;
+
+    let currentExercises;
+
+    if (isDesktopView) {
+        const startIndex = 0;
+        const endIndex = favoritesList.length;
+        currentExercises = favoritesList.slice(startIndex, endIndex);
+    } else {
+        const startIndex = (page - 1) * exercisesPerPage;
+        const endIndex = startIndex + exercisesPerPage;
+        currentExercises = favoritesList.slice(startIndex, endIndex);
+    }
 
     if (!currentExercises.length) {
         favorites.innerHTML =
@@ -80,5 +92,3 @@ if (favoritesElement) {
             "<p class='no-favorites'>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
     }
 }
-
-export { removeExercise };
