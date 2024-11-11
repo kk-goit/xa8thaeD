@@ -223,21 +223,26 @@ function clearMarkup() {
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.exercises-input');
     const clearButton = document.querySelector('.clear-button');
-    clearButton.style.display = 'none';
-
-    searchInput.addEventListener('input', () => {
-        if (searchInput.value.trim() !== '') {
-            clearButton.style.display = 'flex';
-        } else {
-            clearButton.style.display = 'none';
-        }
-    });
-
-    clearButton.addEventListener('click', () => {
-        searchInput.value = '';
+    
+    if (searchInput && clearButton) {
         clearButton.style.display = 'none';
-        searchInput.focus();
-    });
+
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value.trim() !== '') {
+                clearButton.style.display = 'flex';
+            } else {
+                clearButton.style.display = 'none';
+            }
+        });
+
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            clearButton.style.display = 'none';
+            searchInput.focus();
+        });
+    } else {
+        console.warn('.exercises-input not found');
+    }
 });
 
 export { findListOfExercises, renderUserListExercises };
