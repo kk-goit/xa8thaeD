@@ -1,15 +1,3 @@
-.exercise-info__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    height: 48px;
-    border: none;
-    cursor: pointer;
-    border-radius: 30px;
-    transition: var(--transition);
-}
-
 .exercise-btn-block {
     display: flex;
     flex-direction: column;
@@ -58,14 +46,12 @@
 }
 
 .start-btn {
-    padding: 0 22px;
     outline: 1px solid green;
     background: green;
     color: var(--color-popup-main);
 }
 
 .stop-btn {
-    padding: 0 22px;
     outline: 1px solid red;
     background: red;
     color: var(--color-popup-main);
