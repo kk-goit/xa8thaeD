@@ -1,4 +1,4 @@
-<div class="hero">
+<section class="hero">
     <div class="container">
         <div class="hero-first-part">
             <div class="hero-content">
@@ -18,7 +18,11 @@
             <!-- Контейнер для маленької картинки і тегів -->
             <div class="tag-image-wrapper">
                 <div class="small-image">
-                    <img src="./img/header-women.jpg" alt="Small Image" />
+                    <picture>
+                        <!-- Зображення тільки для великих екранів (мінімальна ширина 1441px) -->
+                        <source srcset="./img/header-women.jpg 1x, ./img/header-women@2x.jpg 2x" media="(min-width: 1041px)" />
+                        <img src="./img/header-women.jpg" alt="Small Image" />
+                    </picture>
                 </div>
 
                 <!-- Теги для десктопа зверху -->
@@ -50,5 +54,5 @@
         </div>
 
     </div>
-</div>
+</section>
 </div>
